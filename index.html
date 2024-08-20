@@ -1,20 +1,52 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="home">
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <img src="img\about\NUIG.png" alt="Project 1">
+                <h3>Project Title 1</h3>
+                <p>Brief description of the project.</p>
+            </div>
+            <div class="project-item">
+                <img src="img\about\me_grad.jpg" alt="Project 2">
+                <h3>Project Title 2</h3>
+                <p>Brief description of the project.</p>
+            </div>
+            <!-- Add more project items here -->
+        </div>
+    </section>
 
-  <h1>Posts</h1>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Short bio or description about you.</p>
+    </section>
 
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:suderman.kaden@gmail.com">your-email@example.com</a></p>
+    </section>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+    <footer>
+        <p>&copy; 2024 Kaden Suderman. All rights reserved.</p>
+    </footer>
+</body>
+</html>
