@@ -1,30 +1,29 @@
-Agency Jekyll theme
-====================
+# My Portfolio Website
 
-Agency theme based on [Agency bootstrap theme ](https://startbootstrap.com/template-overviews/agency/)
+![Website Preview](img\website WIP!!.png)
 
-# How to use
+Welcome to my personal portfolio website repository! This project showcases my skills, projects, and experiences in Computer Vision and Embedded Systems Engineering. It's built to provide an overview of my professional background, highlight key projects I've worked on, and offer easy ways to contact me.
 
-###Portfolio 
+## 🚀 Features
 
-Portfolio projects are in '/_posts'
+- **Responsive Design:** The website is fully responsive and looks great on all device sizes.
+- **About Me Section:** A detailed introduction with a personal touch, including a profile image.
+- **Project Showcase:** A gallery of my top projects with descriptions and links to detailed pages or external resources.
+- **Contact Section:** A simple contact form with direct email links for easy communication.
 
-Images are in '/img/portfolio'
+## 🛠 Technologies Used
 
-###About
+- **HTML5** - Structure of the website
+- **CSS3** - Styling and layout
+- **JavaScript** - Interactive elements and animations
+- **Flexbox** - Responsive layout management
+- **FontAwesome** - Icons used throughout the website
 
-Images are in '/img/about/'
+## 📦 Installation
 
-###Team
+To run this website locally on your machine:
 
-Team members and info are in '_config.yml'
+1. **Clone the Repository:**
 
-Images are in '/img/team/'
-
-
-# Demo
-
-View this jekyll theme in action [here](https://y7kim.github.io/agency-jekyll-theme)
-
-=========
-For more details, read [documentation](http://jekyllrb.com/)
+   ```bash
+   git clone https://github.com/your-username/your-repository-name.git
