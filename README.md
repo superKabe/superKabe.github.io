@@ -6,10 +6,9 @@ Welcome to my personal portfolio website repository! This project showcases my s
 
 ## 🚀 Features
 
-- **Responsive Design:** The website is fully responsive and looks great on all device sizes.
-- **About Me Section:** A detailed introduction with a personal touch, including a profile image.
+- **About Me Section:** Overview of who I am
 - **Project Showcase:** A gallery of my top projects with descriptions and links to detailed pages or external resources.
-- **Contact Section:** A simple contact form with direct email links for easy communication.
+- **Contact Section:** A simple contact form with direct email links if you'd like to reach out.
 
 ## 🛠 Technologies Used
 
@@ -19,11 +18,5 @@ Welcome to my personal portfolio website repository! This project showcases my s
 - **Flexbox** - Responsive layout management
 - **FontAwesome** - Icons used throughout the website
 
-## 📦 Installation
+## Check it out by visiting: www.Kaden-Suderman.com
 
-To run this website locally on your machine:
-
-1. **Clone the Repository:**
-
-   ```bash
-   git clone https://github.com/your-username/your-repository-name.git
