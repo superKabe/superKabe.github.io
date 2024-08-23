@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-![Website Preview](img\website WIP!!.png)
+![Website Preview](img\website_example.png)
 
 Welcome to my personal portfolio website repository! This project showcases my skills, projects, and experiences in Computer Vision and Embedded Systems Engineering. It's built to provide an overview of my professional background, highlight key projects I've worked on, and offer easy ways to contact me.
 
