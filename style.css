@@ -62,3 +62,27 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.about-me {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.about-me .text {
+    flex: 1 1 60%; /* 60% width of the container */
+}
+
+.about-me .image {
+    flex: 0 1 35%; /* 35% width of the container */
+    max-width: 300px;
+    min-width: 200px; /* Prevent the image from getting too small */
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
