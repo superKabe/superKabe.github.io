@@ -1,9 +1,12 @@
+/* Basic Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     background-color: #f4f4f4;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 header {
@@ -16,6 +19,7 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -30,20 +34,21 @@ nav ul li a {
 
 section {
     padding: 20px;
-    margin: 20px;
+    margin: 20px auto;
     background-color: #fff;
     border-radius: 8px;
+    max-width: 1200px;
 }
 
 .project-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: flex; /* Display projects in a row */
+    flex-wrap: wrap; /* Allow wrapping if there are too many items */
+    justify-content: space-between; /* Space out the projects */
 }
 
 .project-item {
-    width: 300px;
-    margin: 15px;
+    width: 45%; /* Adjust width to fit two items side by side with some margin */
+    margin: 15px 0; /* Margin on top and bottom, smaller on sides */
     text-align: center;
 }
 
@@ -65,24 +70,69 @@ footer {
 
 .about-me {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
     gap: 20px;
-    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    padding: 0 20px;
+    overflow-x: hidden;
 }
 
 .about-me .text {
-    flex: 1 1 60%; /* 60% width of the container */
+    flex: 1;
 }
 
 .about-me .image {
-    flex: 0 1 35%; /* 35% width of the container */
-    max-width: 300px;
-    min-width: 200px; /* Prevent the image from getting too small */
+    flex: 0 1 auto;
+    max-width: 100%;
+    margin-top: 20px;
 }
 
 .about-image {
     width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+    .about-me {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .about-me .text {
+        flex: 1 1 60%;
+    }
+
+    .about-me .image {
+        flex: 0 1 35%;
+        margin-left: 20px;
+        margin-top: 0;
+        max-width: 350px;
+    }
+}
+
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none; /* Hide all slides by default */
+    position: absolute; /* Ensure slides are positioned absolutely */
+    width: 100%;
+    height: auto;
+}
+
+.active {
+    display: block; /* Show active slide */
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
 }

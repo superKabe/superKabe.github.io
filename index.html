@@ -18,12 +18,7 @@
             </ul>
         </nav>
     </header>
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-    </style>
-    <div class="about-me" style="margin-left: 20px;">
+    <div class="about-me">
         <div class="text">
             <h2>About Me</h2>
             <p>Hi, my name is Kaden 👋</p>
@@ -40,8 +35,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="image" style="float: left; margin-right: 120px; margin-top: 25px;"> 
-            <img src="img/about/Grad_Photo.png" alt="Kaden Suderman" class="about-image" style="width: 350px; height: auto; border-radius: 8px; ">
+        <div class="image"> 
+            <img src="img/about/Grad_Photo.png" alt="Kaden Suderman" class="about-image">
         </div>
     </div>
 
@@ -49,32 +44,81 @@
         <h2 style="text-align: center;">My Projects</h2>
         <div class="project-list">
             <div class="project-item">
-                <img src="img\Thesis_photo.png" alt="Master's Thesis" style="width: 550px; height: auto; border-radius: 8px;"> 
                 <h3>Master's Thesis</h3>
-                
+                <div class="slideshow-container">
+                    <div class="slide active">
+                        <img src="img/Thesis_photo.png" alt="Master's Thesis">
+                    </div>
+                    <div class="slide">
+                        <img src="img/map-image.png" alt="Another Project Image">
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
                 <p>Feasibility Testing of Real-Time Object Segmentation and Recognition Models in Small Embedded Systems, 
                     Thesis project engineered throughout the duration of a Masters in Electronic & Computer Engineering.</p>
-                <a href="docs\Masters Thesis - Kaden Suderman.pdf" target="_blank">View the Thesis Paper</a><br>
+                <a href="docs/Masters Thesis - Kaden Suderman.pdf" target="_blank">View the Thesis Paper</a><br>
                 <a href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank">View the Github Repo</a>
                 <a href="" target="_blank">View the Project Poster</a>
             </div>
+    
             <div class="project-item">
-                <img src="img\TYP_example.png" alt="Facial Anonymization Project" style="width: 450px; height: auto; border-radius: 8px;">
                 <h3>Real-Time Face Tracking & Anonymization on Raspberry Pi</h3>
+                <div class="slideshow-container">
+                    <div class="slide active">
+                        <img src="img/TYP_example.png" alt="Facial Anonymization Project">
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+                <p>Real-time face tracking and anonymization implemented on a Raspberry Pi for privacy protection.</p>
                 <a href="" target="_blank">View the Github Repo</a>
                 <a href="" target="_blank">View the Project Poster</a>
-                <!-- <p>Brief description of the project.</p> -->
             </div>
         </div>
     </section>
-
+    
     <section id="contact">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:suderman.kaden@gmail.com">your-email@example.com</a></p>
+        <p>Email: <a href="mailto:suderman.kaden@gmail.com">suderman.kaden@gmail.com</a></p>
     </section>
 
     <footer>
         <p>&copy; 2024 Kaden Suderman. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slideshows = document.querySelectorAll('.slideshow-container');
+    
+            slideshows.forEach((container) => {
+                let currentIndex = 0;
+                const slides = container.querySelectorAll('.slide');
+                const totalSlides = slides.length;
+    
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.remove('active');
+                        if (i === index) {
+                            slide.classList.add('active');
+                        }
+                    });
+                }
+    
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    showSlide(currentIndex);
+                }
+    
+                // Initialize the first slide
+                showSlide(currentIndex);
+    
+                // Set interval for automatic slide change
+                setInterval(nextSlide, 5000);
+    
+                // Add click event to change slide on click
+                container.addEventListener('click', nextSlide);
+            });
+        });
+    </script>
+    
 </body>
 </html>
