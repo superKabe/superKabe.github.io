@@ -1,6 +1,26 @@
 /* Basic Styles */
+@font-face {
+    font-family: 'BebasNeue-Regular';
+    src: url('.\\fonts\\BebasNeue-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }  
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('.\\fonts\\Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }  
+
+  .bebas-links {
+    font-family: 'BebasNeue-Regular', BebasNeue-Regular;
+    font-size: 1.5rem;
+  }
+  
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto-Regular', Roboto-Regular;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -39,6 +59,7 @@ section {
     background-color: #fff;
     border-radius: 8px;
     max-width: 1200px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .project-list {
@@ -81,6 +102,7 @@ footer {
 }
 
 .about-me .text {
+    font-family: 'Roboto-Regular', Roboto-Regular;
     flex: 1;
 }
 
@@ -88,6 +110,7 @@ footer {
     display: flex;
     align-items: flex-start;
     padding-top: 20px; /* adjust this value to fine-tune vertical alignment */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -137,4 +160,69 @@ footer {
 .slide img {
     width: 100%;
     height: auto;
+}
+
+#skills {
+    background-color: #f8f8f8;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+.skills-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skills-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.skills-scroll {
+    display: flex;
+    gap: 16px;
+    animation: scroll-left 80s linear infinite;
+    padding: 10px 0;
+    width: max-content;
+}
+
+.skills-scroll-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1100px; /* Match your site width */
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.skills-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+.skills-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.skill {
+    flex: 0 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
 }
