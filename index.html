@@ -8,39 +8,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
-
+  
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="#about" class="bebas-links">About Me</a></li>
-                <li><a href="#projects" class="bebas-links">Projects</a></li>
+                <li><a href="projects.html" class="bebas-links">Projects</a></li>
                 <li><a href="#contact" class="bebas-links">Contact</a></li>
             </ul>
         </nav>
     </header>
     
     <section id="about">
-        <div class="about-me">
-            <div class="text">
-                <h2>About Me</h2>
-                <p>Hello, my name is Kaden 👋</p>
-                <p>I am a Computer Vision and Embedded Systems Engineer with a Master’s in Electronic & Computer Engineering from the University of Galway, Ireland 🍀.</p>
-                <p>Through internships at Boston Scientific and Analog Devices, I developed machine vision algorithms for quality inspection, automated data analysis pipelines, and built computer vision scripts to solve real-world challenges.</p>
-                <p>I am proficient in Python and Java, and skilled with libraries and frameworks such as OpenCV, PyTorch, and TensorFlow.</p>
-                <p>I am passionate about continuous learning, thrive in collaborative environments, and enjoy working on projects that drive innovation. Feel free to explore my portfolio to see my work!</p>
-                <p>Outside of engineering, I enjoy the beach, playing guitar, and exploring new places. I'm always happy to connect!</p>
-                <nav> 
-                    <ul>
-                        <li><a href="#about">See My Resume</a></li>
-                    </ul>
-                </nav>
+        <div class="about-wrapper">
+          
+          <!-- About Me Section -->
+          <div class="about-content">
+            <h2>Hello, my name is Kaden 👋</h2>
+            <p>I am a Computer Vision and Embedded Systems Engineer with a Master’s in Electronic & Computer Engineering from the University of Galway, Ireland 🍀.</p>
+            <p>Through internships at Boston Scientific and Analog Devices, I developed machine vision algorithms for quality inspection, automated data analysis pipelines, and built computer vision scripts to solve real-world challenges.</p>
+            <p>I am proficient in Python and Java, and skilled with libraries and frameworks such as OpenCV, PyTorch, and TensorFlow.</p>
+            <p>I am passionate about continuous learning, thrive in collaborative environments, and enjoy working on projects that drive innovation.</p>
+            <p>Outside of engineering, I enjoy the beach, playing guitar, and exploring new places. I'm always happy to connect!</p>
+          </div>
+      
+          <!-- Daily Fun Fact Section -->
+          <div class="daily-question">
+            <h3>🎉 Daily Fun Fact 🎉</h3>
+            <div id="dailyQuestion" class="question-box">
+              Loading question...
             </div>
-            <div class="image"> 
-                <img src="img/about/Grad_Photo.png" alt="Kaden Suderman" class="about-image">
-            </div>
+          </div>
+      
         </div>
-    </section>
+      </section>
+      
 
     <div class="skills-scroll-wrapper">
         <h2 style="text-align: center;">Tools on my Belt 🛠️</h2>
@@ -83,50 +86,27 @@
         </div>
     </div>
 
-
-    <section id="projects">
-        <h2 style="text-align: center;">My Projects</h2>
-        <div class="project-list">
-            <div class="project-item">
-                <h3>Master's Thesis</h3>
-                <div class="slideshow-container">
-                    <div class="slide active">
-                        <img src="img/Thesis_photo.png" alt="Master's Thesis">
-                    </div>
-                    <div class="slide">
-                        <img src="img/map-image.png" alt="Another Project Image">
-                    </div>
-                    <!-- Add more slides as needed -->
-                </div>
-                <p>Feasibility Testing of Real-Time Object Segmentation and Recognition Models in Small Embedded Systems, 
-                    Thesis project engineered throughout the duration of a Masters in Electronic & Computer Engineering.</p>
-                <a href="docs/Masters Thesis - Kaden Suderman.pdf" target="_blank">View the Thesis Paper</a><br>
-                <a href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank">View the Github Repo</a>
-                <a href="" target="_blank">View the Project Poster</a>
-            </div>
-    
-            <div class="project-item">
-                <h3>Real-Time Face Tracking & Anonymization on Raspberry Pi</h3>
-                <div class="slideshow-container">
-                    <div class="slide active">
-                        <img src="img/TYP_example.png" alt="Facial Anonymization Project">
-                    </div>
-                    <!-- Add more slides as needed -->
-                </div>
-                <p>Real-time face tracking and anonymization implemented on a Raspberry Pi for privacy protection.</p>
-                <a href="" target="_blank">View the Github Repo</a>
-                <a href="" target="_blank">View the Project Poster</a>
-            </div>
-        </div>
-    </section>
     
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:suderman.kaden@gmail.com">suderman.kaden@gmail.com</a></p>
-    </section>
+        <div class="contact-header">
+          <h2>Where to Find Me:</h2>
+          <div class="contact-icons">
+            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" aria-label="LinkedIn">
+              <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+            <a href="https://github.com/your-github" target="_blank" aria-label="GitHub">
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a href="mailto:your.email@example.com" aria-label="Email">
+              <i class="fas fa-envelope fa-2x"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+      
 
     <footer>
-        <p>&copy; 2024 Kaden Suderman. All rights reserved.</p>
+        <p>&copy; 2025 Kaden Suderman. All rights reserved.</p>
     </footer>
 
     <script>
@@ -164,5 +144,7 @@
         });
     </script>
     
+    <script src="daily-question.js"></script>
+
 </body>
 </html>

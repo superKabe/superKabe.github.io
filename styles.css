@@ -18,7 +18,23 @@
     font-size: 1.5rem;
   }
   
-
+  .contact-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .contact-icons a {
+    margin-left: 10px;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .contact-icons a:hover {
+    color: #0077b5; /* or your theme color */
+  }
+  
 body {
     font-family: 'Roboto-Regular', Roboto-Regular;
     margin: 0;
@@ -80,15 +96,20 @@ section {
     border-radius: 8px;
 }
 
+
 footer {
     text-align: center;
-    padding: 10px;
+    padding: 1px 0;
+    margin: 0;
     background-color: #333;
     color: #fff;
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 0.75rem;
+    line-height: 1;
 }
+
 
 .about-me {
     display: flex;
@@ -120,6 +141,44 @@ footer {
     border-radius: 8px;
 }
 
+.about-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .about-content {
+    flex: 1 1 60%;
+    min-width: 280px;
+  }
+  
+  .daily-question {
+    flex: 1 1 35%;
+    background-color: #f0faff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    min-width: 280px;
+    color: #333;
+  }
+  
+  .question-box {
+    margin-top: 10px;
+    font-weight: 500;
+    color: #005577;
+  }
+  
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+  
 @media (min-width: 768px) {
     .about-me {
         flex-direction: row;
