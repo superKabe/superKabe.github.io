@@ -21,29 +21,44 @@
     </header>
     
     <section id="about">
-        <div class="about-wrapper">
-          
-          <!-- About Me Section -->
-          <div class="about-content">
-            <h2>Hello, my name is Kaden 👋</h2>
+
+        <div class="about-content">
+          <!-- Left: Text section with photo -->
+          <div class="about-text">
+            <img src="img\about\Grad_Photo.png" alt="Kaden Graduation" class="grad-photo" />
+            <p style="font-size: 2.2em; font-family: 'BebasNeue-Regular', sans-serif;"><strong>Hi, my name is Kaden 👋</strong></p>
             <p>I am a Computer Vision and Embedded Systems Engineer with a Master’s in Electronic & Computer Engineering from the University of Galway, Ireland 🍀.</p>
             <p>Through internships at Boston Scientific and Analog Devices, I developed machine vision algorithms for quality inspection, automated data analysis pipelines, and built computer vision scripts to solve real-world challenges.</p>
-            <p>I am proficient in Python and Java, and skilled with libraries and frameworks such as OpenCV, PyTorch, and TensorFlow.</p>
+            <p>I am proficient in Python and Java, and skilled with libraries such as OpenCV, PyTorch, and TensorFlow.</p>
             <p>I am passionate about continuous learning, thrive in collaborative environments, and enjoy working on projects that drive innovation.</p>
             <p>Outside of engineering, I enjoy the beach, playing guitar, and exploring new places. I'm always happy to connect!</p>
           </div>
-      
-          <!-- Daily Fun Fact Section -->
-          <div class="daily-question">
-            <h3>🎉 Daily Fun Fact 🎉</h3>
-            <div id="dailyQuestion" class="question-box">
-              Loading question...
+    
+          <!-- Right: Fact + Contact -->
+          <div class="about-sidebar">
+            <div id="fact-box" class="fact-box">
+              <strong style="display: block; text-align: center; font-size: 1.4em;">ECE Question of the Day 🧠</strong>
+              <p><span style="display: block; text-align: center; font-size: 1.2em;" id="daily-question">Loading fact...</span></p>
+              <div id="answer-choices" class="answer-choices"></div>
+            </div>
+    
+            <div class="contact-section">
+              <p style="text-align: center; font-size: 1.2em; font-weight: bold;">Socials & Contact</p>
+              <div class="contact-icons-horizontal" style="display: flex; justify-content: center; gap: 20px;">
+              <a href="https://www.linkedin.com/in/kaden-suderman" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin fa-2x"></i>
+              </a>
+              <a href="https://github.com/superKabe" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github fa-2x"></i>
+              </a>
+              <a href="mailto:suderman.kaden@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope fa-2x"></i>
+              </a>
+              </div>
             </div>
           </div>
-      
-        </div>
-      </section>
-      
+      </div>
+    </section>
 
     <div class="skills-scroll-wrapper">
         <h2 style="text-align: center;">Tools on my Belt 🛠️</h2>
@@ -86,64 +101,11 @@
         </div>
     </div>
 
-    
-    <section id="contact">
-        <div class="contact-header">
-          <h2>Where to Find Me:</h2>
-          <div class="contact-icons">
-            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" aria-label="LinkedIn">
-              <i class="fab fa-linkedin fa-2x"></i>
-            </a>
-            <a href="https://github.com/your-github" target="_blank" aria-label="GitHub">
-              <i class="fab fa-github fa-2x"></i>
-            </a>
-            <a href="mailto:your.email@example.com" aria-label="Email">
-              <i class="fas fa-envelope fa-2x"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-      
-
     <footer>
         <p>&copy; 2025 Kaden Suderman. All rights reserved.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const slideshows = document.querySelectorAll('.slideshow-container');
-    
-            slideshows.forEach((container) => {
-                let currentIndex = 0;
-                const slides = container.querySelectorAll('.slide');
-                const totalSlides = slides.length;
-    
-                function showSlide(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.remove('active');
-                        if (i === index) {
-                            slide.classList.add('active');
-                        }
-                    });
-                }
-    
-                function nextSlide() {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                    showSlide(currentIndex);
-                }
-    
-                // Initialize the first slide
-                showSlide(currentIndex);
-    
-                // Set interval for automatic slide change
-                setInterval(nextSlide, 5000);
-    
-                // Add click event to change slide on click
-                container.addEventListener('click', nextSlide);
-            });
-        });
-    </script>
-    
+    <!-- Include the JavaScript file for the daily question -->
     <script src="daily-question.js"></script>
 
 </body>
