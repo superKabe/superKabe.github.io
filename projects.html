@@ -1,67 +1,111 @@
-<!-- projects.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Projects – Kaden Suderman</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="projects-styles.css">
+  <title>Projects | Kaden Suderman</title>
+  
 </head>
+
 <body>
-  <header>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="bebas-links">About Me</a></li>
-            <li><a href="projects.html" class="bebas-links">Projects</a></li>
-            <li><a href="#contact" class="bebas-links">Contact</a></li>
-        </ul>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about" class="bebas-links">About Me</a></li>
+                <li><a href="projects.html" class="bebas-links">Projects</a></li>
+                <li><a href="#contact" class="bebas-links">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <h2 style="text-align: center;">My Projects</h2>
-    <div class="project-list">
-      
-    <section id="projects">
-        <h2 style="text-align: center;">My Projects</h2>
-        <div class="project-list">
-            <div class="project-item">
-                <h3>Master's Thesis</h3>
-                <div class="slideshow-container">
-                    <div class="slide active">
-                        <img src="img/Thesis_photo.png" alt="Master's Thesis">
-                    </div>
-                    <div class="slide">
-                        <img src="img/map-image.png" alt="Another Project Image">
-                    </div>
-                    <!-- Add more slides as needed -->
-                </div>
-                <p>Feasibility Testing of Real-Time Object Segmentation and Recognition Models in Small Embedded Systems, 
-                    Thesis project engineered throughout the duration of a Masters in Electronic & Computer Engineering.</p>
-                <a href="docs/Masters Thesis - Kaden Suderman.pdf" target="_blank">View the Thesis Paper</a><br>
-                <a href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank">View the Github Repo</a>
-                <a href="" target="_blank">View the Project Poster</a>
-            </div>
-    
-            <div class="project-item">
-                <h3>Real-Time Face Tracking & Anonymization on Raspberry Pi</h3>
-                <div class="slideshow-container">
-                    <div class="slide active">
-                        <img src="img/TYP_example.png" alt="Facial Anonymization Project">
-                    </div>
-                    <!-- Add more slides as needed -->
-                </div>
-                <p>Real-time face tracking and anonymization implemented on a Raspberry Pi for privacy protection.</p>
-                <a href="" target="_blank">View the Github Repo</a>
-                <a href="" target="_blank">View the Project Poster</a>
-            </div>
+  <h1>My Projects</h1>
+  <div class="projects-container">
+
+    <!-- Project 1 -->
+    <div class="project">
+      <div class="project-left">
+        <div class="project-title">Self-Driving Car</div>
+        <div class="project-description">
+          Designed and simulated a self-driving car using cloud-deployed object detection models with YOLOv5.
         </div>
-    </section>
+        <div class="project-links">
+          <a href="https://github.com/yourgithub/self-driving-car" target="_blank">GitHub</a>
+          <a href="https://example.com/poster" target="_blank">Poster</a>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="slideshow-container" data-project="1">
+          <img class="slide-image" src="img/selfdrive1.jpg" alt="Slide 1" />
+          <div class="slide-caption">YOLOv5 model identifying pedestrians and vehicles</div>
+          <a class="prev">&#10094;</a>
+          <a class="next">&#10095;</a>
+        </div>
+      </div>
     </div>
-  </main>
 
-  <footer>
-    <p>&copy; 2024 Kaden Suderman. All rights reserved.</p>
-  </footer>
+    <!-- Project 2 -->
+    <div class="project">
+      <div class="project-left">
+        <div class="project-title">Image Signal Processor</div>
+        <div class="project-description">
+          Built a full pipeline to convert raw sensor data into color images, including demosaicing, denoising, and contrast enhancement.
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yourgithub/image-signal-processor" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="slideshow-container" data-project="2">
+          <img class="slide-image" src="img/isp1.jpg" alt="Slide 1" />
+          <div class="slide-caption">Demosaicing example output using Bayer filter</div>
+          <a class="prev">&#10094;</a>
+          <a class="next">&#10095;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more projects here if needed -->
+
+  </div>
+
+  <script>
+    const slideshows = document.querySelectorAll('.slideshow-container');
+
+    slideshows.forEach(container => {
+      const projectId = container.getAttribute('data-project');
+      const images = {
+        1: [
+          { src: 'img/selfdrive1.jpg', caption: 'YOLOv5 model identifying pedestrians and vehicles' },
+          { src: 'img/selfdrive2.jpg', caption: 'Simulation path planning in Gazebo' },
+        ],
+        2: [
+          { src: 'img/isp1.jpg', caption: 'Demosaicing output using Bayer pattern' },
+          { src: 'img/isp2.jpg', caption: 'Post-enhancement contrast improvements' },
+        ]
+      };
+
+      let current = 0;
+      const imageElement = container.querySelector('.slide-image');
+      const captionElement = container.querySelector('.slide-caption');
+
+      function updateSlide() {
+        const currentImage = images[projectId][current];
+        imageElement.src = currentImage.src;
+        captionElement.textContent = currentImage.caption;
+      }
+
+      container.querySelector('.prev').addEventListener('click', () => {
+        current = (current - 1 + images[projectId].length) % images[projectId].length;
+        updateSlide();
+      });
+
+      container.querySelector('.next').addEventListener('click', () => {
+        current = (current + 1) % images[projectId].length;
+        updateSlide();
+      });
+    });
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kaden-suderman.com</title>
+    <title>About | Kaden Suderman</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -21,40 +21,42 @@
     </header>
     
     <section id="about">
-
         <div class="about-content">
           <!-- Left: Text section with photo -->
           <div class="about-text">
-            <img src="img\about\Grad_Photo.png" alt="Kaden Graduation" class="grad-photo" />
-            <p style="font-size: 2.2em; font-family: 'BebasNeue-Regular', sans-serif;"><strong>Hi, my name is Kaden 👋</strong></p>
-            <p>I am a Computer Vision and Embedded Systems Engineer with a Master’s in Electronic & Computer Engineering from the University of Galway, Ireland 🍀.</p>
-            <p>Through internships at Boston Scientific and Analog Devices, I developed machine vision algorithms for quality inspection, automated data analysis pipelines, and built computer vision scripts to solve real-world challenges.</p>
-            <p>I am proficient in Python and Java, and skilled with libraries such as OpenCV, PyTorch, and TensorFlow.</p>
-            <p>I am passionate about continuous learning, thrive in collaborative environments, and enjoy working on projects that drive innovation.</p>
-            <p>Outside of engineering, I enjoy the beach, playing guitar, and exploring new places. I'm always happy to connect!</p>
+            <p class="about-header"; style="font-size: 2.2em; font-family: 'BebasNeue-Regular', sans-serif;"><strong>I'm Kaden, nice to meet you 👋</strong></p>
+            <p>I'm a Computer Vision and Embedded Systems Engineer with a Master's in Electronic & Computer Engineering from the <a href="https://www.universityofgalway.ie/about-us/" target="_blank">University of Galway</a>, Ireland 🍀.</p>
+            <p>I've always seen myself as an inventor—from building a <a href="https://www.youtube.com/watch?v=KCR0E15hSc0" target="_blank">LEGO robotics machine gun</a> as a kid to designing a <a href="img\about\MECE_FYP_Poster_KadenSuderman.pdf" target="_blank">self-driving car</a> using real-time cloud AI during my graduate studies.</p>
+            <p>I'm comfortable developing in Python and C/C++, and have hands-on experience with frameworks like OpenCV, PyTorch, and TensorFlow for solving vision and AI tasks.</p>
+            <p>I enjoy digging into technical challenges, learning fast, and collaborating with others to build things that actually work—and work well.</p>
+            <p>Outside the lab or laptop, you’ll probably find me at the beach, playing guitar, or exploring somewhere new. Always happy to chat or collaborate!</p>            
           </div>
     
           <!-- Right: Fact + Contact -->
           <div class="about-sidebar">
+            <div class="grad-photo-container">
+              <img src="img\about\Grad_Photo.png" alt="Kaden Graduation" class="grad-photo" />
+
+              <div class="contact-section">
+                <p style="text-align: center; font-size: 1.2em; font-weight: bold;">Socials & Contact</p>
+                <div class="contact-icons-horizontal" style="display: flex; justify-content: center; gap: 20px;">
+                <a href="https://www.linkedin.com/in/kaden-suderman" target="_blank" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <a href="https://github.com/superKabe" target="_blank" aria-label="GitHub">
+                  <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="mailto:suderman.kaden@gmail.com" aria-label="Email">
+                  <i class="fas fa-envelope fa-2x"></i>
+                </a>
+                </div>
+              </div>
+            </div>
+
             <div id="fact-box" class="fact-box">
               <strong style="display: block; text-align: center; font-size: 1.4em;">ECE Question of the Day 🧠</strong>
               <p><span style="display: block; text-align: center; font-size: 1.2em;" id="daily-question">Loading fact...</span></p>
               <div id="answer-choices" class="answer-choices"></div>
-            </div>
-    
-            <div class="contact-section">
-              <p style="text-align: center; font-size: 1.2em; font-weight: bold;">Socials & Contact</p>
-              <div class="contact-icons-horizontal" style="display: flex; justify-content: center; gap: 20px;">
-              <a href="https://www.linkedin.com/in/kaden-suderman" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin fa-2x"></i>
-              </a>
-              <a href="https://github.com/superKabe" target="_blank" aria-label="GitHub">
-                <i class="fab fa-github fa-2x"></i>
-              </a>
-              <a href="mailto:suderman.kaden@gmail.com" aria-label="Email">
-                <i class="fas fa-envelope fa-2x"></i>
-              </a>
-              </div>
             </div>
           </div>
       </div>

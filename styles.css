@@ -127,6 +127,11 @@ footer {
     overflow-x: hidden;
 }
 
+.about-header {
+  margin-bottom: 0rem;
+  margin-top: 0.75rem;
+}
+
 .about-card {
     background-color: #fff;
     border-radius: 12px;
@@ -152,7 +157,7 @@ footer {
     font-size: 1rem;
     line-height: 1.6;
     color: #333;
-    max-width: 550px;       /* Optional: limits width for readability */
+    max-width: 650px;       /* Optional: limits width for readability */
     min-width: 280px;        /* Optional: prevents too narrow text on small screens */
   }
   
@@ -163,6 +168,7 @@ footer {
     gap: 1rem;
     flex: 0 0 auto;
     min-width: 150px;
+    max-width: 10px;
   }
 
   .about-card {
@@ -170,7 +176,7 @@ footer {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 960px;
+    max-width: 1060px;
     margin: auto;
   }
   
@@ -186,28 +192,45 @@ footer {
     flex-direction: column;
     justify-content: center; /* vertical centering */
     align-items: center;
-    padding-right: 20px;
+    padding: 20px 20px 0px 65px;
   }
-  
   
   .grad-photo {
     float: right;
-    width: 180px;
-    height: 180px;
-    border: 2px solid #272727;  /* Optional border for style */
+    width: 160px;
+    height: 160px;
+    border: 0px solid #272727;  /* Optional border for style */
     border-radius: 50%;
     object-fit: cover;
-    margin: 50px 0 1em 1em;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    margin: 50px 10px 1.15em 45px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
+
+  .grad-photo-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    padding-top: 0rem;
+    background: #eaf6ff;
+    border-left: 4px solid #007acc;
+    border-radius: 9px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin: .75rem auto;
+    margin-top: 0rem;
+    width: 468px;
+    max-height: 165px;
+  } 
   
   
   .fact-box {
+    width: 500px;
     background-color: #eaf6ff;
     border-left: 4px solid #007acc;
-    padding: 10px 16px;
+    padding: 10px 16px 10px 16px;
     border-radius: 8px;
     color: #333;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   }
 
   
