@@ -21,6 +21,7 @@
         </nav>
     </header>
     
+  <div id="neural-network-background">
     <section id="about">
         <div class="about-content">
           <!-- Left: Text section with photo -->
@@ -63,7 +64,8 @@
       </div>
     </section>
 
-    <div class="skills-scroll-wrapper">
+    <section id="skills">
+      <div class="skills-scroll-wrapper">
         <h2 style="text-align: center;">Tools on my Belt 🛠️</h2>
         <div class="skills-scroll">
             <!-- First set -->
@@ -103,13 +105,32 @@
             <div class="skill"><i class="fas fa-shapes"></i> Data Modeling</div>
         </div>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Kaden Suderman. All rights reserved.</p>
-    </footer>
+  <footer>
+      <p>&copy; 2025 Kaden Suderman. All rights reserved.</p>
+  </footer>
 
-    <!-- Include the JavaScript file for the daily question -->
-    <script src="daily-question.js"></script>
+  <!-- Include the JavaScript file for the daily question -->
+  <script src="daily-question.js"></script>
+
+    <!-- Three.js is a dependency for Vanta.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <!-- Vanta.js Net effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
+
+  <script>
+    VANTA.NET({
+      el: "#neural-network-background",
+      color: 0x2d4b91,       // Color of the nodes
+      backgroundColor: 0x060b17, // Background color
+      points: 20.00,         // Number of nodes
+      maxDistance: 20.00,    // Maximum distance between nodes
+      spacing: 12.00         // Spacing between nodes
+    });
+  </script>
+  
+
 
 </body>
 </html>
