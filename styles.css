@@ -40,6 +40,10 @@
   transform: scale(1.2);
 }
 
+.contact-icons-horizontal a:hover {
+  transform: scale(1.2);
+}
+
 body {
   font-family: 'Roboto-Regular', Roboto-Regular;
   margin: 0;
@@ -368,4 +372,15 @@ position: relative;
 width: 100%;
 min-height: 100vh; /* Adjust based on your content's height */
 overflow: hidden;
+}
+
+.contact-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  background: none;
+  border-radius: 8px; /* Optional: slight rounding for consistency */
+  box-shadow: 0 0 2px rgba(0,0,0,0.08); /* Optional: subtle shadow for consistency */
 }
