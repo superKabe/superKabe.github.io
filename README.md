@@ -1,4 +1,4 @@
-# Kaden Suderman — Portfolio
+# Kaden Suderman Portfolio
 
 The source for [kaden-suderman.com](https://kaden-suderman.com), a project-first
 portfolio for computer vision, embedded systems, and applied imaging work.
@@ -16,8 +16,9 @@ WebAssembly when needed.
   contact sections.
 - A featured Image Signal Processor card with an interactive raw/processed
   comparison sourced from the original project notebook.
-- A dedicated ISP project lab at `/projects/isp/`, ready for the client-side
-  processing implementation.
+- A dedicated ISP demo at `/projects/isp/` that processes the bundled raw Bayer
+  frame locally in a Web Worker.
+- A browser résumé page at `/resume/` using the current PDF.
 
 ## Local preview
 

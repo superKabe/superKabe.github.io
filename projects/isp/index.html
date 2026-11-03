@@ -5,212 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Explore Kaden Suderman's image signal processor, from raw Bayer sensor data through color correction, denoising, sharpening, and contrast enhancement."
+      content="Run Kaden Suderman's image signal processor in the browser and inspect each stage of the pipeline."
     />
-    <meta name="theme-color" content="#090d0f" />
-    <title>Image Signal Processor — Kaden Suderman</title>
+    <meta name="theme-color" content="#f7f6f1" />
+    <title>Image Signal Processor | Kaden Suderman</title>
     <link rel="icon" href="../../img/favicon.ico" sizes="any" />
     <link rel="stylesheet" href="../../styles.css" />
     <link rel="stylesheet" href="isp.css" />
-    <script src="../../script.js" type="module"></script>
+    <script src="isp.js" type="module"></script>
   </head>
+  <body class="isp-page">
+    <a class="skip-link" href="#demo">Skip to demo</a>
 
-  <body class="lab-page">
-    <a class="skip-link" href="#lab-content">Skip to content</a>
-
-    <header class="lab-header">
-      <div class="shell lab-nav">
-        <a class="lab-back" href="../../">
-          <span aria-hidden="true">←</span>
-          Kaden Suderman
-        </a>
-        <p><span></span> Project lab / 01</p>
+    <header class="project-header">
+      <div class="shell project-nav">
+        <a href="../../">← Kaden Suderman</a>
+        <span>Image Signal Processor</span>
         <a
           href="https://github.com/superKabe/Image-Signal-Processor-ISP"
           target="_blank"
           rel="noreferrer"
-        >
-          Source ↗
-        </a>
+        >Source ↗</a>
       </div>
     </header>
 
-    <main id="lab-content">
-      <section class="lab-hero">
-        <div class="lab-grid" aria-hidden="true"></div>
-        <div class="shell lab-hero-layout">
-          <div class="lab-intro reveal is-visible">
-            <p class="eyebrow"><span></span> Image signal processor</p>
-            <h1>Turning sensor data into something we can see.</h1>
+    <main>
+      <section class="project-intro">
+        <div class="shell project-intro-layout">
+          <div>
+            <p class="kicker">Project 01</p>
+            <h1>Image Signal Processor</h1>
+          </div>
+          <div>
             <p>
-              A ground-up imaging pipeline for transforming an 8-bit RGGB Bayer capture
-              into a usable color image—one stage at a time.
+              A camera sensor records a grid of red, green, and blue samples. This
+              project turns that raw Bayer data into a finished image through a series
+              of small, understandable steps.
             </p>
-
-            <dl class="lab-specs">
-              <div>
-                <dt>Input</dt>
-                <dd>4096 × 2160</dd>
-              </div>
-              <div>
-                <dt>Pattern</dt>
-                <dd>RGGB Bayer</dd>
-              </div>
-              <div>
-                <dt>Depth</dt>
-                <dd>8-bit raw</dd>
-              </div>
-              <div>
-                <dt>Original</dt>
-                <dd>Python notebook</dd>
-              </div>
+            <dl class="project-facts">
+              <div><dt>Input</dt><dd>4096 × 2160</dd></div>
+              <div><dt>Format</dt><dd>8-bit RGGB</dd></div>
+              <div><dt>Runtime</dt><dd>Your browser</dd></div>
             </dl>
           </div>
-
-          <div class="lab-status reveal is-visible">
-            <span>Browser demo status</span>
-            <strong>Interface ready</strong>
-            <p>
-              The verified notebook outputs are wired in. Live client-side processing is
-              the next implementation phase.
-            </p>
-          </div>
         </div>
       </section>
 
-      <section class="lab-stage section" aria-labelledby="preview-title">
+      <section class="demo-section" id="demo" aria-labelledby="demo-title">
         <div class="shell">
-          <div class="lab-stage-heading reveal">
+          <div class="demo-heading">
             <div>
-              <p class="section-index">Output preview</p>
-              <h2 id="preview-title">Raw in. Color out.</h2>
+              <p class="kicker">Live demo</p>
+              <h2 id="demo-title">Follow the image through the pipeline.</h2>
             </div>
             <p>
-              This comparison uses outputs extracted directly from the original project
-              notebook. Drag the divider to inspect the transformation.
+              The raw file stays on this page. Processing runs locally in a Web Worker,
+              so the interface remains responsive.
             </p>
           </div>
 
-          <div class="lab-viewer reveal">
-            <div class="lab-viewer-toolbar">
-              <div>
-                <span class="status-dot"></span>
-                <strong>ISP viewport</strong>
+          <div class="demo-card">
+            <div class="demo-toolbar">
+              <div class="demo-status" aria-live="polite">
+                <span class="status-dot" data-status-dot></span>
+                <div>
+                  <strong data-status>Preparing demo</strong>
+                  <small data-detail>Waiting to load the raw image.</small>
+                </div>
               </div>
-              <p>Frame 001 · Calibration chart</p>
+              <button class="button button-light" type="button" data-run>Run again</button>
             </div>
 
-            <div class="image-comparison lab-comparison" data-comparison style="--position: 50%">
-              <img
-                class="comparison-image"
-                src="../../assets/images/isp-raw-output.png"
-                alt="Raw grayscale Bayer sensor image of an Imatest calibration chart"
-                width="1184"
-                height="633"
-              />
-              <div class="comparison-after">
-                <img
-                  class="comparison-image"
-                  src="../../assets/images/isp-color-output.png"
-                  alt="Color-corrected output from the image signal processing pipeline"
-                  width="1184"
-                  height="633"
-                />
-              </div>
-              <div class="comparison-divider" aria-hidden="true"><span>↔</span></div>
-              <span class="image-label label-before">Raw Bayer</span>
-              <span class="image-label label-after">Processed RGB</span>
-              <input
-                class="comparison-range"
-                type="range"
-                min="0"
-                max="100"
-                value="50"
-                aria-label="Compare the raw and processed ISP images"
-              />
+            <progress class="demo-progress" max="100" value="0" data-progress>0%</progress>
+
+            <div class="canvas-wrap">
+              <canvas width="1024" height="540" data-canvas aria-label="Processed image output"></canvas>
+              <div class="canvas-empty" data-empty>Loading the raw sensor data...</div>
             </div>
 
-            <div class="stage-rail" aria-label="Image processing stages">
-              <div class="stage-item is-active">
-                <span>01</span>
-                <div><strong>Decode</strong><small>Raw Bayer buffer</small></div>
-              </div>
-              <div class="stage-item">
-                <span>02</span>
-                <div><strong>Demosaic</strong><small>RGGB to RGB</small></div>
-              </div>
-              <div class="stage-item">
-                <span>03</span>
-                <div><strong>Correct</strong><small>Color + gamma</small></div>
-              </div>
-              <div class="stage-item">
-                <span>04</span>
-                <div><strong>Refine</strong><small>Denoise + sharpen</small></div>
-              </div>
-              <div class="stage-item">
-                <span>05</span>
-                <div><strong>Finish</strong><small>Local contrast</small></div>
-              </div>
+            <div class="stage-controls" aria-label="Processing stages">
+              <button type="button" data-stage="raw" disabled><span>1</span>Raw</button>
+              <button type="button" data-stage="demosaic" disabled><span>2</span>Demosaic</button>
+              <button type="button" data-stage="color" disabled><span>3</span>Color</button>
+              <button type="button" data-stage="denoise" disabled><span>4</span>Denoise</button>
+              <button type="button" data-stage="sharpen" disabled><span>5</span>Sharpen</button>
+              <button type="button" data-stage="contrast" disabled><span>6</span>Contrast</button>
+            </div>
+
+            <div class="stage-note">
+              <strong data-stage-title>Raw Bayer data</strong>
+              <p data-stage-description>
+                The sensor records one color value at each pixel location.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="pipeline-section section" aria-labelledby="pipeline-title">
-        <div class="shell pipeline-layout">
-          <div class="pipeline-copy reveal">
-            <p class="section-index">The pipeline</p>
-            <h2 id="pipeline-title">Every stage solves a different problem.</h2>
-            <p>
-              Camera sensors do not produce finished photographs. The captured values
-              need to be reconstructed, calibrated, and refined in a deliberate order.
-              The browser version will expose that sequence rather than hide it behind a
-              single “process” button.
-            </p>
-          </div>
-
-          <ol class="pipeline-details reveal">
-            <li>
-              <span>01</span>
-              <div><h3>Reconstruct color</h3><p>Interpolate missing color channels from the RGGB Bayer mosaic.</p></div>
-            </li>
-            <li>
-              <span>02</span>
-              <div><h3>Correct the response</h3><p>Apply a color correction matrix and gamma curve for a natural display response.</p></div>
-            </li>
-            <li>
-              <span>03</span>
-              <div><h3>Control noise</h3><p>Reduce sensor noise while protecting the edges and structures used downstream.</p></div>
-            </li>
-            <li>
-              <span>04</span>
-              <div><h3>Recover detail</h3><p>Sharpen edges and improve local contrast to create the final usable image.</p></div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="lab-next section">
-        <div class="shell lab-next-card reveal">
-          <p class="section-index">Next implementation</p>
+      <section class="process-section">
+        <div class="shell process-layout">
           <div>
-            <h2>Live processing, entirely in your browser.</h2>
-            <p>
-              Phase 2 will move the original pipeline into a Web Worker, load the raw
-              frame only on this page, and expose the processing stages without requiring
-              a server or uploading visitor data.
-            </p>
+            <p class="kicker">What is happening</p>
+            <h2>Six steps, each with a specific job.</h2>
           </div>
-          <a class="button button-primary" href="../../">Return to portfolio</a>
+          <ol>
+            <li><strong>Demosaic</strong><span>Estimate the missing color channels at every pixel.</span></li>
+            <li><strong>Color and gamma</strong><span>Apply the project’s color matrix and display curve.</span></li>
+            <li><strong>Denoise</strong><span>Use an edge-aware filter to reduce small variations.</span></li>
+            <li><strong>Sharpen</strong><span>Recover local detail after the denoising pass.</span></li>
+            <li><strong>Contrast</strong><span>Map the useful intensity range to the final output.</span></li>
+          </ol>
         </div>
       </section>
     </main>
 
-    <footer class="lab-footer">
-      <div class="shell footer-layout">
+    <footer class="site-footer">
+      <div class="shell footer-row">
         <p>© <span data-current-year>2026</span> Kaden Suderman</p>
-        <p>Image Signal Processor · Project 01</p>
-        <a href="#lab-content">Back to top ↑</a>
+        <a href="../../">Back to portfolio</a>
       </div>
     </footer>
   </body>
