@@ -8,15 +8,47 @@ const progress = document.querySelector("[data-progress]");
 const emptyState = document.querySelector("[data-empty]");
 const stageTitle = document.querySelector("[data-stage-title]");
 const stageDescription = document.querySelector("[data-stage-description]");
+const stageOriginal = document.querySelector("[data-stage-original]");
+const stageBrowser = document.querySelector("[data-stage-browser]");
 const stageButtons = [...document.querySelectorAll("[data-stage]")];
 
 const stageCopy = {
-  raw: ["Raw Bayer data", "The sensor records one color value at each pixel location."],
-  demosaic: ["Demosaiced image", "Neighboring samples are combined to estimate red, green, and blue at every pixel."],
-  color: ["Color and gamma correction", "The original project matrix corrects color, then a gamma curve prepares the image for display."],
-  denoise: ["Edge-aware denoising", "A bilateral filter reduces small variations without treating every edge as noise."],
-  sharpen: ["Edge enhancement", "Local contrast around edges is increased to recover detail after denoising."],
-  contrast: ["Final contrast", "The useful intensity range is mapped across the full 8-bit output."],
+  raw: {
+    title: "Raw Bayer data",
+    description: "The sensor records one color value at each pixel location, not a complete RGB pixel.",
+    original: "np.fromfile + reshape",
+    browser: "fetch + Uint8Array",
+  },
+  demosaic: {
+    title: "Demosaiced image",
+    description: "Bilinear interpolation estimates the two missing color channels from neighboring RGGB samples.",
+    original: "cv2.cvtColor(COLOR_BayerRG2BGR)",
+    browser: "Bilinear RGGB interpolation",
+  },
+  color: {
+    title: "Color and gamma correction",
+    description: "A fixed 3 × 3 matrix corrects the sensor response before a 1/2.2 gamma curve prepares the image for display.",
+    original: "NumPy matrix multiply + gamma",
+    browser: "Int32 matrix math + lookup table",
+  },
+  denoise: {
+    title: "Luminance-guided denoising",
+    description: "A tuned 3 × 3 bilateral pass reduces small variations while using luminance differences to avoid crossing visible edges.",
+    original: "cv2.bilateralFilter(d=25, 60, 60)",
+    browser: "3 × 3 joint bilateral, σr=22",
+  },
+  sharpen: {
+    title: "Controlled edge enhancement",
+    description: "A small unsharp mask restores local detail without reintroducing the broad, oversharpened halos from the first port.",
+    original: "skimage.filters.laplace",
+    browser: "3 × 3 unsharp mask, amount=0.85",
+  },
+  contrast: {
+    title: "Final contrast",
+    description: "The useful 30 to 240 intensity range is mapped across the full 8-bit output.",
+    original: "exposure.rescale_intensity",
+    browser: "Linear 30–240 remap",
+  },
 };
 
 let worker;
@@ -44,9 +76,11 @@ function showStage(name) {
     button.classList.toggle("is-active", button.dataset.stage === name);
   });
 
-  const [title, description] = stageCopy[name];
-  stageTitle.textContent = title;
-  stageDescription.textContent = description;
+  const copy = stageCopy[name];
+  stageTitle.textContent = copy.title;
+  stageDescription.textContent = copy.description;
+  stageOriginal.textContent = copy.original;
+  stageBrowser.textContent = copy.browser;
 }
 
 function runPipeline() {

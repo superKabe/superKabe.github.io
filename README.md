@@ -10,14 +10,16 @@ has no framework or build step: GitHub Pages can serve the source directly, and
 the interactive project labs can still use browser APIs, Web Workers, and
 WebAssembly when needed.
 
-## V1 structure
+## Site structure
 
 - A responsive one-page portfolio with introduction, featured work, about, and
   contact sections.
-- A featured Image Signal Processor card with an interactive raw/processed
-  comparison sourced from the original project notebook.
+- A keyboard-accessible project carousel with real project media, touch scrolling,
+  and links to each source repository.
 - A dedicated ISP demo at `/projects/isp/` that processes the bundled raw Bayer
-  frame locally in a Web Worker.
+  frame locally in a Web Worker and exposes the implementation details for every
+  stage.
+- A small portrait Easter egg built with CSS animation and an accessible button.
 - A browser résumé page at `/resume/` using the current PDF.
 
 ## Local preview

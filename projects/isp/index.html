@@ -38,14 +38,15 @@
           </div>
           <div>
             <p>
-              A camera sensor records a grid of red, green, and blue samples. This
-              project turns that raw Bayer data into a finished image through a series
-              of small, understandable steps.
+              A camera sensor records one red, green, or blue value at each pixel. This
+              project reconstructs the missing color information and turns the raw Bayer
+              frame into a finished image, one inspectable stage at a time.
             </p>
             <dl class="project-facts">
-              <div><dt>Input</dt><dd>4096 × 2160</dd></div>
-              <div><dt>Format</dt><dd>8-bit RGGB</dd></div>
-              <div><dt>Runtime</dt><dd>Your browser</dd></div>
+              <div><dt>Completed</dt><dd>2023</dd></div>
+              <div><dt>Original</dt><dd>Python notebook</dd></div>
+              <div><dt>Input</dt><dd>4096 × 2160 RGGB</dd></div>
+              <div><dt>Demo</dt><dd>Vanilla JavaScript</dd></div>
             </dl>
           </div>
         </div>
@@ -59,8 +60,9 @@
               <h2 id="demo-title">Follow the image through the pipeline.</h2>
             </div>
             <p>
-              The raw file stays on this page. Processing runs locally in a Web Worker,
-              so the interface remains responsive.
+              The page downloads the original 8.4 MB raw frame and processes it locally.
+              A Web Worker is a separate browser thread, so the image math can run
+              without freezing the controls or the rest of the page.
             </p>
           </div>
 
@@ -97,6 +99,10 @@
               <p data-stage-description>
                 The sensor records one color value at each pixel location.
               </p>
+              <dl class="stage-technical">
+                <div><dt>Original notebook</dt><dd data-stage-original>NumPy fromfile + reshape</dd></div>
+                <div><dt>Browser port</dt><dd data-stage-browser>Fetch + Uint8Array</dd></div>
+              </dl>
             </div>
           </div>
         </div>
@@ -106,15 +112,70 @@
         <div class="shell process-layout">
           <div>
             <p class="kicker">What is happening</p>
-            <h2>Six steps, each with a specific job.</h2>
+            <h2>Six stages, with the math left visible.</h2>
           </div>
           <ol>
-            <li><strong>Demosaic</strong><span>Estimate the missing color channels at every pixel.</span></li>
-            <li><strong>Color and gamma</strong><span>Apply the project’s color matrix and display curve.</span></li>
-            <li><strong>Denoise</strong><span>Use an edge-aware filter to reduce small variations.</span></li>
-            <li><strong>Sharpen</strong><span>Recover local detail after the denoising pass.</span></li>
-            <li><strong>Contrast</strong><span>Map the useful intensity range to the final output.</span></li>
+            <li><strong>Read raw</strong><span><code>np.fromfile</code> reshapes a binary sensor dump into a 4096 × 2160 Bayer array.</span></li>
+            <li><strong>Demosaic</strong><span><code>cv2.cvtColor</code> reconstructs RGB. The browser uses bilinear RGGB interpolation.</span></li>
+            <li><strong>Color + gamma</strong><span>A fixed 3 × 3 color correction matrix is followed by a 1/2.2 display curve.</span></li>
+            <li><strong>Denoise</strong><span>The notebook uses <code>cv2.bilateralFilter</code>. This port uses a tighter luminance-guided bilateral pass to protect detail.</span></li>
+            <li><strong>Sharpen</strong><span>The original Laplacian experiment is represented here by a controlled unsharp mask.</span></li>
+            <li><strong>Contrast</strong><span><code>skimage.exposure.rescale_intensity</code> maps the useful 30 to 240 range across the output.</span></li>
           </ol>
+        </div>
+      </section>
+
+      <section class="origin-section">
+        <div class="shell origin-layout">
+          <div>
+            <p class="kicker">Original build</p>
+            <h2>A notebook first, then a browser port.</h2>
+          </div>
+          <div class="origin-copy">
+            <p>
+              I completed the original project in 2023 as a Jupyter notebook using
+              Python, NumPy, OpenCV, scikit-image, SciPy, and Matplotlib. This was before
+              generative AI coding tools became part of my workflow, so it is a useful
+              snapshot of how I learned the pipeline: implement a stage, inspect the
+              output, and tune the tradeoffs by hand.
+            </p>
+            <p>
+              The page you are using is a separate implementation. It keeps the same raw
+              frame, Bayer pattern, color matrix, gamma curve, and contrast range, but
+              rewrites the processing in dependency-free JavaScript with typed arrays.
+            </p>
+            <a class="text-link" href="https://github.com/superKabe/Image-Signal-Processor-ISP" target="_blank" rel="noreferrer">Open the original notebook ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-section">
+        <div class="shell why-layout">
+          <div class="why-card">
+            <p class="kicker">How the browser version works</p>
+            <h2>The main page never does the heavy lifting.</h2>
+            <ol>
+              <li><span>01</span><p>The worker fetches the raw binary file and validates the expected 4096 × 2160 byte count.</p></li>
+              <li><span>02</span><p>It averages same-color samples within Bayer blocks to reach 1024 × 540 without corrupting the RGGB pattern.</p></li>
+              <li><span>03</span><p>Each stage runs on typed arrays away from the main interface thread.</p></li>
+              <li><span>04</span><p>The worker transfers six RGBA buffers back for instant stage switching.</p></li>
+            </ol>
+          </div>
+          <div class="why-card why-card-green">
+            <p class="kicker">Why this project matters</p>
+            <h2>It shows what happens before a model sees an image.</h2>
+            <p>
+              Computer vision starts with the quality and meaning of its pixels. Building
+              an ISP from a sensor dump demonstrates practical understanding of image
+              representation, color reconstruction, numerical processing, and the
+              tradeoff between noise reduction and retained detail.
+            </p>
+            <p>
+              Porting it from a notebook to a static website also shows a different skill:
+              translating an experiment into an interactive tool while working within
+              browser performance and memory limits.
+            </p>
+          </div>
         </div>
       </section>
     </main>

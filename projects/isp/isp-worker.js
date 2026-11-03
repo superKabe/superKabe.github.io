@@ -16,12 +16,18 @@ function downsampleBayer(source) {
 
   for (let y = 0; y < HEIGHT; y += 1) {
     const sourceY = Math.floor(y / 2) * 8 + (y % 2);
-    const sourceRow = sourceY * SOURCE_WIDTH;
     const outputRow = y * WIDTH;
 
     for (let x = 0; x < WIDTH; x += 1) {
       const sourceX = Math.floor(x / 2) * 8 + (x % 2);
-      output[outputRow + x] = source[sourceRow + sourceX];
+      let sum = 0;
+      for (let sampleY = 0; sampleY < 4; sampleY += 1) {
+        const row = (sourceY + sampleY * 2) * SOURCE_WIDTH;
+        for (let sampleX = 0; sampleX < 4; sampleX += 1) {
+          sum += source[row + sourceX + sampleX * 2];
+        }
+      }
+      output[outputRow + x] = Math.round(sum / 16);
     }
   }
 
@@ -140,9 +146,10 @@ function colorAndGamma(input) {
 
 function bilateralFilter(input) {
   const output = new Uint8ClampedArray(input.length);
-  const radius = 2;
-  const sigmaColor = 60;
-  const sigmaSpace = 2;
+  const radius = 1;
+  const sigmaRange = 22;
+  const sigmaSpace = 1;
+  const strength = 0.62;
   const spatialWeights = [];
 
   for (let offsetY = -radius; offsetY <= radius; offsetY += 1) {
@@ -162,6 +169,7 @@ function bilateralFilter(input) {
       const centerRed = input[centerIndex];
       const centerGreen = input[centerIndex + 1];
       const centerBlue = input[centerIndex + 2];
+      const centerLuminance = 0.2126 * centerRed + 0.7152 * centerGreen + 0.0722 * centerBlue;
       let redSum = 0;
       let greenSum = 0;
       let blueSum = 0;
@@ -174,9 +182,11 @@ function bilateralFilter(input) {
         const red = input[sampleIndex];
         const green = input[sampleIndex + 1];
         const blue = input[sampleIndex + 2];
-        const colorDistance =
-          ((red - centerRed) ** 2 + (green - centerGreen) ** 2 + (blue - centerBlue) ** 2) / 3;
-        const rangeWeight = Math.exp(-colorDistance / (2 * sigmaColor * sigmaColor));
+        const sampleLuminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+        const luminanceDistance = (sampleLuminance - centerLuminance) ** 2;
+        const colorDistance = ((red - centerRed) ** 2 + (green - centerGreen) ** 2 + (blue - centerBlue) ** 2) / 3;
+        const guidedDistance = luminanceDistance + colorDistance * 0.2;
+        const rangeWeight = Math.exp(-guidedDistance / (2 * sigmaRange * sigmaRange));
         const weight = item.weight * rangeWeight;
 
         redSum += red * weight;
@@ -185,9 +195,9 @@ function bilateralFilter(input) {
         weightSum += weight;
       }
 
-      output[centerIndex] = redSum / weightSum;
-      output[centerIndex + 1] = greenSum / weightSum;
-      output[centerIndex + 2] = blueSum / weightSum;
+      output[centerIndex] = centerRed * (1 - strength) + (redSum / weightSum) * strength;
+      output[centerIndex + 1] = centerGreen * (1 - strength) + (greenSum / weightSum) * strength;
+      output[centerIndex + 2] = centerBlue * (1 - strength) + (blueSum / weightSum) * strength;
       output[centerIndex + 3] = 255;
     }
   }
@@ -197,21 +207,27 @@ function bilateralFilter(input) {
 
 function sharpen(input) {
   const output = new Uint8ClampedArray(input.length);
-  const amount = 0.35;
+  const amount = 0.85;
+  const kernel = [
+    [-1, -1, 1], [0, -1, 2], [1, -1, 1],
+    [-1, 0, 2], [0, 0, 4], [1, 0, 2],
+    [-1, 1, 1], [0, 1, 2], [1, 1, 1],
+  ];
 
   for (let y = 0; y < HEIGHT; y += 1) {
     for (let x = 0; x < WIDTH; x += 1) {
       const center = (y * WIDTH + x) * 4;
-      const left = (y * WIDTH + clamp(x - 1, 0, WIDTH - 1)) * 4;
-      const right = (y * WIDTH + clamp(x + 1, 0, WIDTH - 1)) * 4;
-      const up = (clamp(y - 1, 0, HEIGHT - 1) * WIDTH + x) * 4;
-      const down = (clamp(y + 1, 0, HEIGHT - 1) * WIDTH + x) * 4;
 
       for (let channel = 0; channel < 3; channel += 1) {
-        const localAverage =
-          (input[left + channel] + input[right + channel] + input[up + channel] + input[down + channel]) / 4;
+        let blurred = 0;
+        for (const [offsetX, offsetY, weight] of kernel) {
+          const sampleX = clamp(x + offsetX, 0, WIDTH - 1);
+          const sampleY = clamp(y + offsetY, 0, HEIGHT - 1);
+          blurred += input[(sampleY * WIDTH + sampleX) * 4 + channel] * weight;
+        }
+        blurred /= 16;
         output[center + channel] = clamp(
-          input[center + channel] + amount * (input[center + channel] - localAverage),
+          input[center + channel] + amount * (input[center + channel] - blurred),
         );
       }
       output[center + 3] = 255;
