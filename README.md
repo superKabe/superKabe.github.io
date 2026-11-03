@@ -1,22 +1,35 @@
-# My Portfolio Website
+# Kaden Suderman — Portfolio
 
-![Website Preview](img\website_example.png)
+The source for [kaden-suderman.com](https://kaden-suderman.com), a project-first
+portfolio for computer vision, embedded systems, and applied imaging work.
 
-Welcome to my personal portfolio website repository! This project showcases my skills, projects, and experiences in Computer Vision and Embedded Systems Engineering. It's built to provide an overview of my professional background, highlight key projects I've worked on, and offer easy ways to contact me.
+## Stack
 
-## 🚀 Features
+The site uses semantic HTML, modern CSS, and small ES modules. It intentionally
+has no framework or build step: GitHub Pages can serve the source directly, and
+the interactive project labs can still use browser APIs, Web Workers, and
+WebAssembly when needed.
 
-- **About Me Section:** Overview of who I am
-- **Project Showcase:** A gallery of my top projects with descriptions and links to detailed pages or external resources.
-- **Contact Section:** A simple contact form with direct email links if you'd like to reach out.
+## V1 structure
 
-## 🛠 Technologies Used
+- A responsive one-page portfolio with introduction, featured work, about, and
+  contact sections.
+- A featured Image Signal Processor card with an interactive raw/processed
+  comparison sourced from the original project notebook.
+- A dedicated ISP project lab at `/projects/isp/`, ready for the client-side
+  processing implementation.
 
-- **HTML5** - Structure of the website
-- **CSS3** - Styling and layout
-- **JavaScript** - Interactive elements and animations
-- **Flexbox** - Responsive layout management
-- **FontAwesome** - Icons used throughout the website
+## Local preview
 
-## Check it out by visiting: www.Kaden-Suderman.com
+Node.js is the only local prerequisite. From the repository root:
 
+```powershell
+node .\tools\dev-server.mjs
+```
+
+Then open [http://127.0.0.1:4173](http://127.0.0.1:4173).
+
+## Deployment
+
+The repository is deployed through GitHub Pages and retains the custom domain
+declared in `CNAME`.
