@@ -352,15 +352,15 @@ input {
 .polar-bear {
   position: absolute;
   z-index: 1;
-  right: -18px;
-  bottom: 34px;
-  width: 92px;
-  height: 62px;
+  right: -22px;
+  bottom: 32px;
+  width: 106px;
+  height: 71px;
   overflow: visible;
   border: 0;
   background: transparent;
   padding: 0;
-  transform: translateX(-90px) translateY(12px) rotate(34deg);
+  transform: translateX(-104px) translateY(12px) rotate(34deg);
   transform-origin: 48% 72%;
   cursor: pointer;
   animation: bear-peek 10s ease-in-out 5s infinite;
@@ -378,7 +378,7 @@ input {
 }
 
 .polar-bear img {
-  width: 92px;
+  width: 106px;
   max-width: none;
   height: auto;
   image-rendering: pixelated;
@@ -391,7 +391,7 @@ input {
 
 @keyframes bear-peek {
   0%, 100% {
-    transform: translateX(-90px) translateY(12px) rotate(34deg);
+    transform: translateX(-104px) translateY(12px) rotate(34deg);
   }
   10%, 28% {
     transform: translateX(0) translateY(0) rotate(34deg);
@@ -409,7 +409,7 @@ input {
     transform: translateX(0) translateY(0) rotate(34deg);
   }
   80% {
-    transform: translateX(-90px) translateY(12px) rotate(34deg);
+    transform: translateX(-104px) translateY(12px) rotate(34deg);
   }
 }
 
@@ -921,7 +921,7 @@ input {
   }
 
   .polar-bear {
-    right: -20px;
+    right: -23px;
     bottom: 28px;
   }
 

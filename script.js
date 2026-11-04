@@ -40,6 +40,8 @@ document.querySelectorAll("[data-comparison]").forEach((comparison) => {
 
 const carousel = document.querySelector("[data-carousel]");
 const carouselTrack = carousel?.querySelector("[data-carousel-track]");
+const blinkSlide = carouselTrack?.querySelector("#project-blink-title")?.closest("[data-project-slide]");
+if (blinkSlide) carouselTrack.prepend(blinkSlide);
 const slides = carouselTrack ? [...carouselTrack.querySelectorAll("[data-project-slide]")] : [];
 const previousButton = document.querySelector("[data-carousel-previous]");
 const nextButton = document.querySelector("[data-carousel-next]");
