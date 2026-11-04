@@ -110,6 +110,8 @@ function runPipeline() {
       stages = Object.fromEntries(
         Object.entries(data.stages).map(([name, buffer]) => [name, new Uint8ClampedArray(buffer)]),
       );
+      canvas.dataset.denoiseMeanDifference = data.denoiseMetrics.meanAbsoluteDifference.toFixed(3);
+      canvas.dataset.denoiseChangedChannels = data.denoiseMetrics.changedChannelPercent.toFixed(1);
 
       stageButtons.forEach((button) => {
         button.disabled = false;

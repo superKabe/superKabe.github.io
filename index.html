@@ -61,11 +61,14 @@
             <div class="portrait-frame">
               <div class="portrait-flipper" data-portrait-flipper>
                 <img class="portrait-face portrait-front" src="img/about/kaden-mountain.jpg" alt="Kaden Suderman hiking in the mountains" width="1500" height="1125" />
-                <img class="portrait-face portrait-back" src="img/about/kaden-camera-rig.jpg" alt="Kaden testing an industrial camera rig" width="900" height="1200" />
+                <div class="portrait-face portrait-back">
+                  <img class="portrait-back-blur" src="img/about/kaden-camera-rig.jpg" alt="" aria-hidden="true" />
+                  <img class="portrait-back-contain" src="img/about/kaden-camera-rig.jpg" alt="Kaden testing an industrial camera rig" width="900" height="1200" />
+                </div>
               </div>
             </div>
             <button class="polar-bear" type="button" aria-label="Reveal a field engineering outtake" title="A curious visitor" data-polar-bear>
-              <img src="img/about/polar-bear-pixel.png" alt="" width="144" height="96" />
+              <img src="img/about/polar-bear-peek.png" alt="" width="160" height="160" />
             </button>
           </div>
         </div>
@@ -76,8 +79,8 @@
           <header class="carousel-heading">
             <div class="section-heading">
               <p>Selected work</p>
-              <h2 id="work-title">Things I’ve been building.</h2>
-              <p class="section-intro">A mix of browser demos, working applications, and hands-on computer vision projects. Start with the live ISP, then move through the rest.</p>
+              <h2 id="work-title">What I’ve been building.</h2>
+              <p class="section-intro">A mix of browser demos, working applications, and hands-on computer vision projects.</p>
             </div>
             <div class="carousel-controls" aria-label="Project carousel controls">
               <button type="button" aria-label="Previous project" data-carousel-previous>←</button>
@@ -199,13 +202,13 @@
         <div class="shell about-layout">
           <header class="section-heading">
             <p>About</p>
-            <h2 id="about-title">I like engineering that has to work outside the lab.</h2>
+            <h2 id="about-title">I like engineering that has to work in the real world.</h2>
           </header>
 
           <div class="about-copy">
-            <p>At Roboflow, I worked on physical AI deployments, from industrial cameras and NVIDIA Jetsons to the customer environments around them. Before that, I built imaging tools at Boston Scientific and worked close to embedded hardware at Analog Devices.</p>
-            <p>I tend to learn by making a question measurable. That has meant tracking my own blink rate during long days at a screen, building image pipelines from raw sensor data, and getting models to run on constrained hardware.</p>
-            <p>I earned a Master’s in Electronic and Computer Engineering from the University of Galway, but most of what sticks has come from building, testing, and debugging the whole system.</p>
+            <p>At <strong>Roboflow</strong>, I worked with manufacturers to discover and scope computer vision problems, understand the constraints on the floor, and turn them into deployable systems. That work covered industrial cameras, NVIDIA Jetsons, networking, and the customer environments around them.</p>
+            <p>Earlier, I built imaging tools at <strong>Boston Scientific</strong> and worked close to embedded hardware at <strong>Analog Devices</strong>. I also tested real-time object segmentation for autonomous driving across a Raspberry Pi and remote GPU, which taught me how quickly model choices meet hardware and network limits.</p>
+            <p>I earned a Master’s in Electronic and Computer Engineering from the University of Galway. I do my best work when I can clarify the problem, build the system, and stay involved until it works where it matters.</p>
 
             <div class="focus-heading">
               <span>What I keep coming back to</span>

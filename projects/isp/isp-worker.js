@@ -248,6 +248,26 @@ function increaseContrast(input) {
   return output;
 }
 
+function compareRgbStages(before, after) {
+  let absoluteDifference = 0;
+  let changedChannels = 0;
+  let comparedChannels = 0;
+
+  for (let index = 0; index < before.length; index += 4) {
+    for (let channel = 0; channel < 3; channel += 1) {
+      const difference = Math.abs(before[index + channel] - after[index + channel]);
+      absoluteDifference += difference;
+      if (difference > 0) changedChannels += 1;
+      comparedChannels += 1;
+    }
+  }
+
+  return {
+    meanAbsoluteDifference: absoluteDifference / comparedChannels,
+    changedChannelPercent: (changedChannels / comparedChannels) * 100,
+  };
+}
+
 self.addEventListener("message", async ({ data }) => {
   if (data.type !== "run") return;
   const startedAt = performance.now();
@@ -274,6 +294,7 @@ self.addEventListener("message", async ({ data }) => {
 
     report(63, "Reducing noise", "Running an edge-aware bilateral filter.");
     const denoised = bilateralFilter(color);
+    const denoiseMetrics = compareRgbStages(color, denoised);
 
     report(82, "Sharpening detail", "Increasing local edge contrast.");
     const sharpened = sharpen(denoised);
@@ -296,6 +317,7 @@ self.addEventListener("message", async ({ data }) => {
         width: WIDTH,
         height: HEIGHT,
         elapsedMs: performance.now() - startedAt,
+        denoiseMetrics,
         stages,
       },
       Object.values(stages),

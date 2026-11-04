@@ -264,6 +264,7 @@ input {
 
 .portrait-frame {
   position: relative;
+  z-index: 2;
   overflow: hidden;
   aspect-ratio: 4 / 3;
   border: 7px solid var(--white);
@@ -290,34 +291,57 @@ input {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   backface-visibility: hidden;
 }
 
 .portrait-front {
+  object-fit: cover;
   object-position: center;
 }
 
 .portrait-back {
-  object-position: center 28%;
+  overflow: hidden;
+  background: #d7d5d0;
   transform: rotateY(180deg);
+}
+
+.portrait-back-blur,
+.portrait-back-contain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.portrait-back-blur {
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  filter: blur(22px) brightness(0.72);
+  transform: scale(1.06);
+}
+
+.portrait-back-contain {
+  z-index: 1;
+  object-fit: contain;
 }
 
 .polar-bear {
   position: absolute;
-  z-index: -1;
-  right: -2px;
-  bottom: 23px;
-  width: 54px;
-  height: 46px;
-  overflow: hidden;
+  z-index: 1;
+  right: -30px;
+  bottom: 38px;
+  width: 110px;
+  height: 110px;
+  overflow: visible;
   border: 0;
   background: transparent;
   padding: 0;
-  opacity: 0;
-  transform: translateX(-26px) translateY(28px) rotate(-7deg);
+  transform: translateX(-100px) translateY(-10px) rotate(45deg);
+  transform-origin: 50% 70%;
   cursor: pointer;
-  animation: bear-peek 8s ease-in-out 5s infinite;
+  animation: bear-peek 10s ease-in-out 5s infinite;
   animation-play-state: paused;
 }
 
@@ -326,35 +350,44 @@ input {
 }
 
 .portrait-wrap.is-flipped .polar-bear {
-  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   animation: none;
 }
 
 .polar-bear img {
-  width: 72px;
+  width: 110px;
   max-width: none;
-  height: 48px;
+  height: 110px;
   image-rendering: pixelated;
 }
 
 .polar-bear:hover,
 .polar-bear:focus-visible {
-  opacity: 1;
-  transform: translateX(-26px) translateY(0) rotate(-7deg);
   animation-play-state: paused;
 }
 
 @keyframes bear-peek {
-  0%, 12%, 78%, 100% {
-    z-index: -1;
-    opacity: 0;
-    transform: translateX(-26px) translateY(28px) rotate(-7deg);
+  0%, 100% {
+    transform: translateX(-100px) translateY(-10px) rotate(45deg);
   }
-  22%, 65% {
-    z-index: 2;
-    opacity: 1;
-    transform: translateX(-26px) translateY(0) rotate(-7deg);
+  10%, 28% {
+    transform: translateX(0) translateY(0) rotate(45deg);
+  }
+  30% {
+    transform: translateX(0) translateY(0) rotate(37deg);
+  }
+  32% {
+    transform: translateX(0) translateY(0) rotate(53deg);
+  }
+  34% {
+    transform: translateX(0) translateY(0) rotate(40deg);
+  }
+  36%, 60% {
+    transform: translateX(0) translateY(0) rotate(45deg);
+  }
+  80% {
+    transform: translateX(-100px) translateY(-10px) rotate(45deg);
   }
 }
 
@@ -852,8 +885,8 @@ input {
   }
 
   .polar-bear {
-    right: -9px;
-    bottom: 14px;
+    right: -32px;
+    bottom: 28px;
   }
 
   .button-row .button {
@@ -905,9 +938,8 @@ input {
   }
 
   .polar-bear {
-    z-index: 2;
-    opacity: 1;
-    transform: translateX(-26px) translateY(0) rotate(-7deg);
+    z-index: 1;
+    transform: translateX(0) translateY(0) rotate(45deg);
     animation: none;
   }
 }
