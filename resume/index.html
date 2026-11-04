@@ -16,7 +16,7 @@
       <div class="shell resume-nav">
         <a href="../">← Home</a>
         <strong>Résumé</strong>
-        <a href="../img/about/Kaden_Suderman_resume.pdf" download>Download PDF</a>
+        <a href="../img/about/Kaden_Suderman_resume.pdf" download="Kaden_Suderman_Resume_Nov_2026.pdf">Download PDF</a>
       </div>
     </header>
 
@@ -25,12 +25,14 @@
         <div>
           <p class="kicker">Kaden Suderman</p>
           <h1>Computer Vision &amp; Field Engineer</h1>
-          <p>Physical AI · Industrial Vision · Edge Deployment</p>
+          <p>Physical AI · Industrial Vision</p>
         </div>
         <div class="resume-contact">
-          <a href="mailto:suderman.kaden@gmail.com">Email</a>
+          <a href="mailto:suderman.kaden@gmail.com">suderman.kaden@gmail.com</a>
+          <a href="tel:+17602291484">+1 (760) 229-1484</a>
           <a href="https://github.com/superKabe" target="_blank" rel="noreferrer">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/kaden-suderman" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <span>San Francisco Bay Area</span>
           <a class="button button-dark" href="../img/about/Kaden_Suderman_resume.pdf" target="_blank" rel="noreferrer">Open PDF</a>
         </div>
       </section>
@@ -45,10 +47,11 @@
               <span>Nov 2025 - Sep 2026</span>
             </div>
             <ul>
-              <li>Built and deployed real-time industrial computer vision pipelines covering annotation, training, tracking, inference, and application outputs.</li>
-              <li>Supported onsite deployments with Fortune 500 manufacturers and worked directly with engineering and Center of Excellence teams.</li>
-              <li>Provisioned NVIDIA Jetson systems, specified industrial cameras and edge compute, and troubleshot Linux, networking, containers, and customer environments.</li>
-              <li>Built an equipment inventory and procurement portal tracking more than $1M in hardware.</li>
+              <li>Built real-time industrial computer vision pipelines spanning data annotation, model training, inference, and model evaluation against customer requirements.</li>
+              <li>Supported onsite deployments with Fortune 500 manufacturers, configuring edge systems and computer vision pipelines, troubleshooting customer environments, and working directly with engineering and Center of Excellence teams.</li>
+              <li>Provisioned and maintained NVIDIA Jetson systems through flashing, Linux setup, SSH, networking, containers, and remote troubleshooting.</li>
+              <li>Specified and tested industrial cameras and edge compute for defect-detection and deployment requirements.</li>
+              <li>Served as DRI for edge.roboflow.com, a full-stack edge deployment platform with SOPs, bring-up guides, and barcode-based hardware inventory and procurement. Tracked more than $1M in equipment and enabled approval of an additional $2M order.</li>
             </ul>
           </article>
 
@@ -58,8 +61,9 @@
               <span>Jan - Aug 2023</span>
             </div>
             <ul>
-              <li>Developed classical vision systems for label detection on medical-device manufacturing lines using Cognex, Keyence, OpenCV, scikit-image, and NumPy.</li>
-              <li>Set up and tested industrial cameras and lighting, then automated the sorting of more than 100GB of image data with Python.</li>
+              <li>Developed classical computer vision label-detection systems on medical-device manufacturing lines in clean-room environments using Cognex and Keyence vision systems.</li>
+              <li>Built OpenCV, scikit-image, and NumPy pipelines that reached approximately 90% detection accuracy in low-contrast conditions.</li>
+              <li>Set up and tested industrial cameras, lighting, and vision tools on manufacturing equipment. Automated sorting of more than 100GB of image data with Python.</li>
             </ul>
           </article>
 
@@ -70,7 +74,7 @@
             </div>
             <ul>
               <li>Programmed Arduino and ESP32 systems, flashed firmware with PlatformIO, and debugged hardware over UART and JTAG.</li>
-              <li>Built a Python image-conversion tool for automated batch processing in hardware simulations.</li>
+              <li>Built a Python, OpenCV, and Pillow image-conversion tool for automated batch processing in hardware simulations.</li>
             </ul>
           </article>
         </section>
@@ -79,12 +83,18 @@
           <h2 id="projects-title">Selected projects</h2>
           <div class="resume-projects">
             <article>
-              <h3>CleanSort-CV</h3>
-              <p>Real-time waste classification from camera input through offline inference, tracking, metrics, and Streamlit output. Deployed on a Raspberry Pi 4B.</p>
+              <h3>CleanSort-CV - Real-Time Waste Classification</h3>
+              <ul>
+                <li>Built a real-time multi-class computer vision application from camera input through offline inference, object tracking, metrics, and Streamlit dashboard output.</li>
+                <li>Deployed the pipeline on a Raspberry Pi 4B for live classification and monitoring.</li>
+              </ul>
             </article>
             <article>
-              <h3>Master’s thesis</h3>
-              <p>Edge-to-cloud object segmentation using Raspberry Pi, remote GPU inference, YOLOv8x-seg, FastSAM, BLE, and networked image processing.</p>
+              <h3>Master’s Thesis - Real-Time Object Segmentation in Embedded Systems</h3>
+              <ul>
+                <li>Built an edge-to-cloud computer vision system using Raspberry Pi 4B, remote GPU inference, YOLOv8x-seg, FastSAM, BLE, and networked image processing.</li>
+                <li>Reached approximately 27-28 FPS with about 400 ms edge-to-cloud return inference.</li>
+              </ul>
             </article>
           </div>
         </section>
@@ -93,17 +103,20 @@
           <div>
             <h2 id="education-title">Education</h2>
             <h3>University of Galway</h3>
-            <p>Master of Engineering, Electronic &amp; Computer Engineering, 2024</p>
-            <p>First Class Honors, GPA 3.85</p>
-            <p>Bachelor of Engineering, 2023</p>
-            <p>Analog Devices Elite Scholarship, 2022</p>
+            <p><strong>Master of Engineering (M.E.), Electronic &amp; Computer Engineering</strong>, 2024</p>
+            <p>GPA 3.85, First Class Honors</p>
+            <p><strong>Bachelor of Engineering (B.E.), Electronic &amp; Computer Engineering</strong>, 2023</p>
+            <p>GPA 3.5, Second Class Honors, Grade 1</p>
+            <p><strong>Analog Devices Elite Scholarship</strong>, 2022</p>
+            <p>Competitive engineering selection with internship opportunity and monetary award.</p>
           </div>
           <div>
             <h2>Technical skills</h2>
             <p><strong>Languages:</strong> Python, C, C++, Java, SQL</p>
-            <p><strong>Vision:</strong> OpenCV, PyTorch, TensorFlow, YOLO, ONNX, TensorRT, Roboflow</p>
+            <p><strong>CV / ML:</strong> OpenCV, scikit-image, NumPy, PyTorch, TensorFlow, YOLO, ONNX, TensorRT, Roboflow</p>
             <p><strong>Industrial:</strong> Basler, LUCID, Cognex, Keyence, SICK, Zebra</p>
-            <p><strong>Deployment:</strong> NVIDIA Jetson, Raspberry Pi, Linux, Docker, SSH, Tailscale</p>
+            <p><strong>Edge / Deployment:</strong> Jetson Nano, Orin Nano/NX, AGX Orin, Thor T5000 (Advantech MIC-743, 128GB), Raspberry Pi, Linux, Docker, SSH, Tailscale</p>
+            <p><strong>Systems:</strong> ROS2, Git, Azure, UART, SPI, I2C, TCP/IP, MQTT, HTTP/TLS, RTOS</p>
           </div>
         </section>
       </div>
