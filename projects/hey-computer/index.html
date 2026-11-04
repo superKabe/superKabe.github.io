@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Hey Computer is an in-progress Windows voice assistant with local wake-word processing and replaceable AI providers." />
+    <title>Hey Computer | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="hey-computer.css" />
+    <script src="../shared/project.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#build">Skip to project</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Hey Computer</span><a href="https://github.com/superKabe/HeyComputer" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 02 · In progress</p>
+        <h1>Hey Computer</h1>
+        <p class="project-summary">A lightweight Windows voice assistant designed around local wake detection, visible microphone state, and AI services that can be swapped without rewriting the application.</p>
+        <dl class="project-facts"><div><dt>Status</dt><dd>Integrated prototype</dd></div><div><dt>Platform</dt><dd>Windows x64</dd></div><div><dt>Stack</dt><dd>C# · .NET 10 · WPF</dd></div><div><dt>Automated tests</dt><dd>89 passing</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="build"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Target experience</p><h2>One clear loop from wake phrase to spoken response.</h2><p>Push-to-talk remains available when a local wake model is not configured.</p></header>
+        <ol class="voice-flow"><li><span>01</span><strong>Wait locally</strong><p>Listen for “Hey Computer” on-device without continuously streaming audio.</p></li><li><span>02</span><strong>Capture</strong><p>Show recording state, normalize the utterance, and stop cleanly.</p></li><li><span>03</span><strong>Respond</strong><p>Transcribe, call the selected language model, and stream speech playback.</p></li><li><span>04</span><strong>Reset</strong><p>Return to local listening without retaining history by default.</p></li></ol>
+      </div></section>
+
+      <section class="project-section"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Architecture</p><h2>Providers are replaceable. Application state is not.</h2><p>The coordinator owns the conversation lifecycle while microphone, wake-word, transcription, model, and speech providers stay behind interfaces.</p></header>
+        <div class="architecture-row"><div>WASAPI audio</div><span>→</span><div>Local wake word</div><span>→</span><div>Conversation coordinator</div><span>→</span><div>STT · LLM · TTS</div></div>
+      </div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid"><article class="note-card"><h3>Working now</h3><p>The tray application builds, packages, validates its checksum, and passes 89 credential-free tests. It supports push-to-talk, conditional wake detection, and an xAI provider path.</p></article><article class="note-card"><h3>Privacy boundary</h3><p>Credentials use Windows protection. Audio, transcripts, and telemetry are not saved by default. Computer control and persistent memory remain intentionally out of scope.</p></article><article class="note-card"><h3>Before release</h3><p>Real microphone behavior, wake accuracy, a live end-to-end conversation, signing, installation, and update rollback still need validation.</p><a href="https://github.com/superKabe/HeyComputer" target="_blank" rel="noreferrer">Follow the build ↗</a></article></div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

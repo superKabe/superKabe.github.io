@@ -84,7 +84,7 @@
             </div>
             <div class="carousel-controls" aria-label="Project carousel controls">
               <button type="button" aria-label="Previous project" data-carousel-previous>←</button>
-              <span aria-live="polite" data-carousel-status>1 / 5</span>
+              <span aria-live="polite" data-carousel-status>1 / 10</span>
               <button type="button" aria-label="Next project" data-carousel-next>→</button>
             </div>
           </header>
@@ -105,7 +105,7 @@
                     <p>Drag the divider to compare the raw capture and processed image.</p>
                   </div>
                   <div class="project-copy">
-                    <div class="project-meta"><span>02</span><span>2023</span><span>Live demo</span></div>
+                    <div class="project-meta"><span>05</span><span>2023</span><span>Live demo</span></div>
                     <h3 id="project-isp-title">Image Signal Processor</h3>
                     <p>Start with an 8-bit Bayer frame, then reconstruct color, correct the response, denoise, sharpen, and finish the contrast.</p>
                     <ul class="project-tags" aria-label="Project topics"><li>Image processing</li><li>OpenCV</li><li>Runs in browser</li></ul>
@@ -162,7 +162,7 @@
                     <p>One checkerboard frame used to estimate the lens parameters.</p>
                   </div>
                   <div class="project-copy">
-                    <div class="project-meta"><span>04</span><span>2024</span><span>Interactive demo</span></div>
+                    <div class="project-meta"><span>08</span><span>2024</span><span>Interactive demo</span></div>
                     <h3 id="project-fisheye-title">Fisheye Calibration</h3>
                     <p>A practical OpenCV workflow for removing fisheye distortion, measuring reprojection error, and excluding weak calibration frames.</p>
                     <ul class="project-tags" aria-label="Project topics"><li>Camera calibration</li><li>OpenCV</li><li>Geometry</li></ul>
@@ -181,13 +181,113 @@
                     <p>Feature matching and perspective alignment across overlapping frames.</p>
                   </div>
                   <div class="project-copy">
-                    <div class="project-meta"><span>05</span><span>2024</span><span>Interactive demo</span></div>
+                    <div class="project-meta"><span>09</span><span>2024</span><span>Interactive demo</span></div>
                     <h3 id="project-panorama-title">Panorama Stitching</h3>
                     <p>A classical vision pipeline using ORB features, brute-force matching, homography estimation, and warping to combine a scene.</p>
                     <ul class="project-tags" aria-label="Project topics"><li>ORB</li><li>Homography</li><li>Feature matching</li></ul>
                     <div class="button-row">
                       <a class="button button-dark" href="projects/panorama/">Inspect the pipeline</a>
                       <a class="text-link" href="https://github.com/superKabe/Panorama-Image-Stitching" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-slide" aria-labelledby="project-hey-computer-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media project-card-media-dark">
+                    <div class="assistant-visual" aria-hidden="true">
+                      <span class="assistant-orb"></span>
+                      <p>Hey Computer</p>
+                      <div class="assistant-state"><i></i><span>Waiting locally</span></div>
+                      <div class="assistant-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                    <p>A Windows voice assistant with local wake detection and replaceable AI providers.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>02</span><span>2026</span><span>In progress</span></div>
+                    <h3 id="project-hey-computer-title">Hey Computer</h3>
+                    <p>A privacy-conscious desktop voice assistant built around explicit microphone states, local wake-word processing, and modular speech and AI services.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>C# / .NET</li><li>WPF</li><li>Voice AI</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/hey-computer/">View the build</a>
+                      <a class="text-link" href="https://github.com/superKabe/HeyComputer" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-slide" aria-labelledby="project-depth-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media project-card-media-dark">
+                    <img src="assets/images/projects/depth-kitti.png" alt="Four depth estimation outputs compared on a KITTI street scene" loading="lazy" />
+                    <p>Compare classical stereo, Monodepth, and ManyDepth outputs from the original notebook.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>04</span><span>2024</span><span>Interactive results</span></div>
+                    <h3 id="project-depth-title">Depth Estimation on KITTI</h3>
+                    <p>An evaluation of monocular, stereo, and LiDAR-informed depth estimation for autonomous-driving imagery.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>KITTI</li><li>Monodepth</li><li>StereoSGBM</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/depth-kitti/">Explore the results</a>
+                      <a class="text-link" href="https://github.com/superKabe/Depth-Estimation-on-KITTI" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-slide" aria-labelledby="project-autonomous-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media poster-card-media">
+                    <img src="assets/images/projects/autonomous-segmentation.jpg" alt="Poster for an embedded autonomous-driving segmentation project" loading="lazy" />
+                    <p>Master's project: on-device road tracking with remote FastSAM segmentation.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>06</span><span>2024</span><span>Poster + system review</span></div>
+                    <h3 id="project-autonomous-title">Autonomous Driving with Object Segmentation</h3>
+                    <p>A Raspberry Pi vehicle that combines onboard road detection with networked segmentation to test what belongs at the edge.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>FastSAM</li><li>Raspberry Pi</li><li>Edge AI</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/autonomous-segmentation/">View the project</a>
+                      <a class="text-link" href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-slide" aria-labelledby="project-facial-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media poster-card-media">
+                    <img src="assets/images/projects/facial-anonymization.jpg" alt="Poster for a Raspberry Pi facial anonymization system" loading="lazy" />
+                    <p>A standalone Raspberry Pi camera pipeline for detection, tracking, and selective blur.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>07</span><span>2022</span><span>Poster + walkthrough</span></div>
+                    <h3 id="project-facial-title">Embedded Facial Anonymization</h3>
+                    <p>A real-time privacy system that detects faces and applies Gaussian blur locally on a Raspberry Pi 4.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>OpenCV</li><li>Privacy</li><li>Embedded vision</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/facial-anonymization/">Explore the system</a>
+                      <a class="text-link" href="https://github.com/superKabe/Real-Time-Facial-Anonymization-for-Embedded-Devices" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-slide" aria-labelledby="project-blink-reminder-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media blink-reminder-media">
+                    <img src="assets/images/projects/blink-reminder.png" alt="Blink eye reminder icon" loading="lazy" />
+                    <p>A small Windows utility that turns the 20-20-20 eye-care rule into a timer.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>10</span><span>2023</span><span>Browser simulation</span></div>
+                    <h3 id="project-blink-reminder-title">Blink</h3>
+                    <p>A lightweight desktop reminder to look away from the screen, refocus at a distance, and blink regularly.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>Python</li><li>Windows</li><li>PyInstaller</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/blink-reminder/">Try the timer</a>
+                      <a class="text-link" href="https://github.com/superKabe/Blink" target="_blank" rel="noreferrer">Source code ↗</a>
                     </div>
                   </div>
                 </div>

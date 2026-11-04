@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A master's project testing real-time object segmentation and road tracking on a Raspberry Pi autonomous vehicle." />
+    <title>Autonomous Driving with Object Segmentation | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="../shared/poster.css" />
+    <script src="../shared/project.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#poster">Skip to poster</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Autonomous Segmentation</span><a href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 06 · Master's project</p><h1>Autonomous Driving with Object Segmentation</h1>
+        <p class="project-summary">A small autonomous vehicle used to test which perception tasks can run on a Raspberry Pi and which are better served by a remote GPU.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2024</dd></div><div><dt>Edge device</dt><dd>Raspberry Pi 4B</dd></div><div><dt>Models</dt><dd>FastSAM · YOLOv8-seg</dd></div><div><dt>Measured output</dt><dd>20–30 FPS segmentation</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="poster"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Project poster</p><h2>The system combines local control with networked perception.</h2><p>Road boundaries and vehicle control stay close to the hardware. Larger segmentation models run externally and return scene information.</p></header>
+        <a class="poster-frame portrait-poster" href="../assets/autonomous/project-poster.pdf" target="_blank" aria-label="Open the full project poster as a PDF"><img src="../assets/autonomous/project-poster.jpg" alt="Full poster explaining the autonomous object-segmentation system" /></a>
+        <p class="poster-link"><a href="../assets/autonomous/project-poster.pdf" target="_blank">Open the full-resolution poster ↗</a></p>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">System split</p><h2>Latency, model size, and reliability determine where inference belongs.</h2></header><ol class="workflow"><li><strong>Sense locally</strong><span>Camera and ultrasonic sensors feed the Raspberry Pi.</span></li><li><strong>Track the road</strong><span>Canny edges and Hough lines estimate the vehicle's path.</span></li><li><strong>Segment remotely</strong><span>Frames stream to a larger FastSAM or YOLO segmentation model.</span></li><li><strong>Return decisions</strong><span>Relevant scene information comes back to the embedded controller.</span></li></ol></div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid"><article class="note-card"><h3>Why hybrid inference</h3><p>Small on-device models are dependable without a network. Remote inference makes larger segmentation models practical when the connection and latency budget allow it.</p></article><article class="note-card"><h3>Engineering scope</h3><p>The work covered perception, motor control, embedded hardware, networking, and the integration problems between them.</p></article><article class="note-card"><h3>What I learned</h3><p>Model accuracy is only one system variable. Frame rate, round-trip latency, failure behavior, and deployment complexity decide whether the full product works.</p><a href="https://github.com/superKabe/Autonomous-Driving-with-Object-Segmentation" target="_blank" rel="noreferrer">View the implementation ↗</a></article></div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

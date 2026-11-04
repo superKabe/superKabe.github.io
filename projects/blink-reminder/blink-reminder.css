@@ -1,0 +1,9 @@
+.timer-demo { position: relative; display: grid; max-width: 720px; min-height: 430px; margin-inline: auto; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); padding: 38px; text-align: center; }
+.timer-demo > img { width: 96px; }
+.timer-readout span { display: block; font-size: clamp(3.2rem, 8vw, 5.4rem); font-weight: 680; letter-spacing: -.06em; line-height: 1; }
+.timer-readout p { margin: 8px 0 0; color: var(--muted); }
+.toast-preview { position: absolute; right: 18px; bottom: 18px; display: flex; max-width: 360px; align-items: center; gap: 12px; border: 1px solid #2b2f33; border-radius: 8px; background: #202327; padding: 14px; color: white; text-align: left; box-shadow: 0 14px 40px rgba(0,0,0,.28); }
+.toast-preview[hidden] { display: none; }
+.toast-preview img { width: 42px; }
+.toast-preview p { margin: 3px 0 0; color: #ced2d3; font-size: .78rem; }
+@media (max-width: 520px) { .timer-demo { min-height: 480px; padding: 28px 18px; } .toast-preview { right: 10px; bottom: 10px; left: 10px; } }

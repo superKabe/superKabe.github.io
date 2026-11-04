@@ -1,0 +1,10 @@
+.voice-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.voice-flow li { min-height: 210px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); padding: 22px; }
+.voice-flow span { color: var(--green); font-size: .72rem; font-weight: 800; }
+.voice-flow strong { display: block; margin-top: 38px; font-size: 1.05rem; }
+.voice-flow p { margin: 8px 0 0; color: var(--muted); font-size: .84rem; }
+.architecture-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1.35fr auto 1fr; align-items: center; gap: 12px; }
+.architecture-row div { border: 1px solid var(--line); border-radius: 12px; background: var(--white); padding: 24px 14px; font-size: .84rem; font-weight: 750; text-align: center; }
+.architecture-row span { color: var(--green); }
+@media (max-width: 760px) { .voice-flow { grid-template-columns: 1fr 1fr; } .architecture-row { grid-template-columns: 1fr; } .architecture-row span { transform: rotate(90deg); text-align: center; } }
+@media (max-width: 480px) { .voice-flow { grid-template-columns: 1fr; } }

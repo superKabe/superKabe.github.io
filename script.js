@@ -40,8 +40,22 @@ document.querySelectorAll("[data-comparison]").forEach((comparison) => {
 
 const carousel = document.querySelector("[data-carousel]");
 const carouselTrack = carousel?.querySelector("[data-carousel-track]");
-const blinkSlide = carouselTrack?.querySelector("#project-blink-title")?.closest("[data-project-slide]");
-if (blinkSlide) carouselTrack.prepend(blinkSlide);
+const projectOrder = [
+  "project-blink-title",
+  "project-hey-computer-title",
+  "project-cleansort-title",
+  "project-depth-title",
+  "project-isp-title",
+  "project-autonomous-title",
+  "project-facial-title",
+  "project-fisheye-title",
+  "project-panorama-title",
+  "project-blink-reminder-title",
+];
+projectOrder.forEach((id) => {
+  const slide = carouselTrack?.querySelector(`#${id}`)?.closest("[data-project-slide]");
+  if (slide) carouselTrack.append(slide);
+});
 const slides = carouselTrack ? [...carouselTrack.querySelectorAll("[data-project-slide]")] : [];
 const previousButton = document.querySelector("[data-carousel-previous]");
 const nextButton = document.querySelector("[data-carousel-next]");

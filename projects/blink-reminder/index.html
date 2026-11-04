@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Blink is a lightweight Windows reminder for the 20-20-20 eye-care rule." />
+    <title>Blink | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="blink-reminder.css" />
+    <script src="../shared/project.js" type="module"></script>
+    <script src="blink-reminder.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to timer</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Blink</span><a href="https://github.com/superKabe/Blink" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 10</p><h1>Blink</h1>
+        <p class="project-summary">A small Windows utility that periodically reminds the user to look away from the screen, focus at a distance, and blink.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2023</dd></div><div><dt>Platform</dt><dd>Windows</dd></div><div><dt>Stack</dt><dd>Python · win10toast</dd></div><div><dt>Packaging</dt><dd>PyInstaller</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Browser simulation</p><h2>Try the reminder loop in twenty seconds.</h2><p>The desktop version waits twenty minutes. This shortened timer demonstrates the same notification flow without installing anything.</p></header>
+        <div class="timer-demo" data-blink-timer>
+          <img src="../assets/blink-reminder/eye.png" alt="Blink eye icon" />
+          <div class="timer-readout"><span data-timer-value>00:20</span><p data-timer-label>Ready for a short test</p></div>
+          <button class="control-button primary" type="button" data-timer-toggle>Start 20-second demo</button>
+          <div class="toast-preview" data-toast hidden role="status"><img src="../assets/blink-reminder/eye.png" alt="" /><div><strong>Look 20m into the distance</strong><p>Focus on a distant object for 20 seconds and blink 20 times.</p></div></div>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">Original behavior</p><h2>A deliberately small desktop utility.</h2></header><ol class="workflow"><li><strong>Run quietly</strong><span>The packaged Python application stays out of the way.</span></li><li><strong>Wait 20 minutes</strong><span>A timer tracks continuous screen time.</span></li><li><strong>Show a toast</strong><span>Windows prompts the user to refocus and blink.</span></li><li><strong>Repeat</strong><span>The loop resets after the short eye break.</span></li></ol></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

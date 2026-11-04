@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interactive results from a KITTI depth-estimation comparison using stereo vision, Monodepth, ManyDepth, and LiDAR ground truth." />
+    <title>Depth Estimation on KITTI | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="depth.css" />
+    <script src="../shared/project.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to results</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Depth Estimation on KITTI</span><a href="https://github.com/superKabe/Depth-Estimation-on-KITTI" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 04</p><h1>Depth Estimation on KITTI</h1>
+        <p class="project-summary">A notebook-based comparison of classical stereo matching, monocular depth, multi-frame depth, and LiDAR measurements on autonomous-driving imagery.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2024</dd></div><div><dt>Dataset</dt><dd>KITTI</dd></div><div><dt>Methods</dt><dd>StereoSGBM · Monodepth · ManyDepth</dd></div><div><dt>Validation</dt><dd>LiDAR ground truth</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Interactive results</p><h2>Step through the exact notebook outputs.</h2><p>Each view is generated from the same street scene, so changes in edge quality, smoothness, and scale are directly comparable.</p></header>
+        <div class="demo-panel">
+          <div class="demo-toolbar"><div class="tab-list" data-tabs="#depth-stages" role="tablist" aria-label="Depth estimation results"><button class="tab-button" data-tab="inputs">1 Inputs</button><button class="tab-button" data-tab="disparity">2 Disparity</button><button class="tab-button" data-tab="depth">3 Depth</button><button class="tab-button" data-tab="validate">4 Validate</button></div><p>Original notebook artifacts</p></div>
+          <div class="demo-stage depth-stage" id="depth-stages">
+            <div class="stage-pane" data-pane="inputs"><div class="media-frame"><img src="../assets/depth/stereo-inputs.png" alt="Left and right KITTI camera images with corresponding points" /></div><div class="stage-copy"><h3>Rectified stereo pair</h3><p>The horizontal shift of the marked point between cameras is disparity. Larger disparity generally means the point is closer to the camera.</p></div></div>
+            <div class="stage-pane" data-pane="disparity" hidden><div class="media-frame"><img src="../assets/depth/disparity-comparison.png" alt="Stereo, Monodepth, and ManyDepth disparity maps" /></div><div class="stage-copy"><h3>Compare four estimates</h3><p>StereoSGBM preserves sharp local changes but produces gaps and noise. Learned models return denser, smoother surfaces with different input requirements.</p></div></div>
+            <div class="stage-pane" data-pane="depth" hidden><div class="media-frame"><img src="../assets/depth/depth-comparison.png" alt="Stereo and Monodepth depth maps" /></div><div class="stage-copy"><h3>Convert disparity to depth</h3><p>The stereo result uses camera baseline and focal length. The learned result is scaled before comparison because monocular predictions do not recover absolute metric scale on their own.</p></div></div>
+            <div class="stage-pane" data-pane="validate" hidden><div class="media-frame"><img src="../assets/depth/distance-validation.png" alt="Average distance estimates compared with LiDAR ground truth" /></div><div class="stage-copy"><h3>Check against LiDAR</h3><p>The validation plot compares median stereo and Monodepth estimates against projected LiDAR measurements across the image sequence.</p></div></div>
+          </div>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">What the comparison shows</p><h2>Depth quality depends on both the scene and the sensing setup.</h2></header><div class="notes-grid"><article class="note-card"><h3>Classical stereo</h3><p>Metric geometry is available from a calibrated pair, but textureless areas, occlusion, and parameter choices create missing or noisy estimates.</p></article><article class="note-card"><h3>Monocular depth</h3><p>One camera simplifies hardware and produces dense output, but absolute scale is ambiguous and learned priors can smooth object boundaries.</p></article><article class="note-card"><h3>Multi-frame depth</h3><p>ManyDepth uses temporal context to improve structure while retaining a single-camera deployment path.</p><a href="https://github.com/superKabe/Depth-Estimation-on-KITTI" target="_blank" rel="noreferrer">Open the notebook ↗</a></article></div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>
