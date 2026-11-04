@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A browser-based blink rate monitor using MediaPipe facial landmarks and eye aspect ratio." />
+    <title>Blink Rate Monitor | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="blink.css" />
+    <script src="../shared/project.js" type="module"></script>
+    <script src="blink.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to demo</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Blink Rate Monitor</span><a href="https://github.com/superKabe/Blink-Detector" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 03</p><h1>Blink Rate Monitor</h1>
+        <p class="project-summary">A real-time vision tool that estimates eye openness, detects blink events, and tracks blinks per minute. The original desktop application used YOLOv8 and MediaPipe; this port runs facial landmarks directly in the browser.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2025</dd></div><div><dt>Original</dt><dd>Python desktop app</dd></div><div><dt>Signal</dt><dd>Eye aspect ratio</dd></div><div><dt>Browser</dt><dd>MediaPipe + webcam</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Live browser demo</p><h2>Measure your blink rate locally.</h2><p>The camera feed and landmark processing stay in your browser. No frames are uploaded by this page.</p></header>
+        <div class="blink-demo">
+          <div class="blink-viewer">
+            <img src="../../assets/images/projects/blink-detector.gif" alt="Original desktop blink detector running on Kaden" data-blink-poster />
+            <div class="live-camera" data-live-camera hidden><video data-blink-video playsinline muted></video><canvas data-blink-canvas aria-hidden="true"></canvas></div>
+          </div>
+          <aside class="blink-controls">
+            <div class="control-row"><button class="control-button primary" type="button" data-start-camera>Start webcam</button><button class="control-button" type="button" data-stop-camera disabled>Stop</button></div>
+            <p class="status-message" data-blink-status>Showing the original desktop demo.</p>
+            <dl class="live-stats"><div><dt>Blinks</dt><dd data-blink-count>0</dd></div><div><dt>Last 60 seconds</dt><dd><span data-blink-bpm>0</span> BPM</dd></div><div><dt>Eye aspect ratio</dt><dd data-blink-ear>0.000</dd></div><div><dt>Threshold</dt><dd data-blink-threshold>Calibrating</dd></div></dl>
+            <div class="ear-meter" aria-hidden="true"><span data-ear-meter></span></div>
+            <p class="privacy-note">Your browser will ask for camera permission. Stop the demo at any time to release the camera.</p>
+          </aside>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">Detection logic</p><h2>Six landmarks per eye become one useful signal.</h2></header>
+        <ol class="workflow"><li><strong>Locate the face</strong><span>MediaPipe tracks 478 facial landmarks.</span></li><li><strong>Measure each eye</strong><span>Vertical opening is divided by horizontal width.</span></li><li><strong>Detect a closure</strong><span>EAR falls below a calibrated threshold.</span></li><li><strong>Count the reopening</strong><span>A blink is recorded when the eye opens again.</span></li></ol>
+      </div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid">
+        <article class="note-card"><h3>Original build</h3><p>The desktop version paired YOLOv8 person detection with MediaPipe Face Mesh, OpenCV video, a 60-second blink window, and optional Matplotlib plots.</p></article>
+        <article class="note-card"><h3>Browser adaptation</h3><p>The port removes the redundant person detector and uses MediaPipe Face Landmarker directly. It calibrates the threshold from the visitor’s open-eye baseline.</p></article>
+        <article class="note-card"><h3>Tradeoff</h3><p>Lighting, glasses, camera angle, and deliberate squinting can affect EAR. This is an engineering demonstration, not a medical measurement.</p><a href="https://github.com/superKabe/Blink-Detector" target="_blank" rel="noreferrer">Read the source ↗</a></article>
+      </div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

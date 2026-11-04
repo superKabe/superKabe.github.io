@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="CleanSort-CV, an edge computer vision system for classifying waste and tracking bin counts." />
+    <title>CleanSort-CV | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="cleansort.css" />
+    <script src="../shared/project.js" type="module"></script>
+    <script src="cleansort.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to demo</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">CleanSort-CV</span><a href="https://github.com/superKabe/CleanSort-CV" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 02</p>
+        <h1>CleanSort-CV</h1>
+        <p class="project-summary">An edge vision application that classifies waste from a live camera, tracks category counts, and turns detections into simple operational alerts.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2025</dd></div><div><dt>Interface</dt><dd>Streamlit</dd></div><div><dt>Inference</dt><dd>Roboflow Workflow</dd></div><div><dt>Runtime</dt><dd>Edge camera system</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Interactive walkthrough</p><h2>Follow a detection through the system.</h2><p>This browser version replays the application logic without claiming to run the original trained workflow or edge model.</p></header>
+        <div class="demo-panel">
+          <div class="demo-toolbar"><div class="tab-list" data-tabs="#cleansort-stages" role="tablist" aria-label="CleanSort stages"><button class="tab-button" data-tab="camera">1 Camera</button><button class="tab-button" data-tab="inference">2 Inference</button><button class="tab-button" data-tab="counts">3 Counts</button><button class="tab-button" data-tab="alert">4 Alert</button></div><p data-cleansort-status>Choose a stage or process sample items.</p></div>
+          <div class="demo-stage" id="cleansort-stages">
+            <div class="stage-pane split-layout" data-pane="camera"><div class="media-frame"><img src="../assets/cleansort/dashboard.png" alt="Original CleanSort Streamlit dashboard with camera output and counts" /></div><div class="stage-copy"><h3>Live camera input</h3><p>OpenCV reads the camera stream while a separate inference pipeline processes frames. The UI keeps displaying the newest available result instead of blocking on every frame.</p></div></div>
+            <div class="stage-pane split-layout" data-pane="inference" hidden><div class="media-frame"><img src="../assets/cleansort/pipeline.png" alt="CleanSort computer vision pipeline diagram" /></div><div class="stage-copy"><h3>Five-class detection</h3><p>The workflow maps detections to recyclable, kitchen, other, hazardous, and glass waste. The callback receives annotated frames and class names.</p></div></div>
+            <div class="stage-pane" data-pane="counts" hidden>
+              <div class="sort-simulator">
+                <div><h3>Replay the counting logic</h3><p>Select an example category, then process it. This recreates the state changes from the original Python callback, not model inference.</p><div class="sample-controls" data-sample-controls></div><button class="control-button primary" type="button" data-process-sample>Process sample</button><button class="control-button" type="button" data-reset-counts>Reset</button></div>
+                <div class="bin-board" data-bin-board aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="stage-pane split-layout" data-pane="alert" hidden><div class="media-frame"><img src="../assets/cleansort/classes.png" alt="CleanSort five-class training and test examples" /></div><div class="stage-copy"><h3>Operational output</h3><p>Counts update twice per second. When a configured bin reaches capacity, the application surfaces an alert long enough for an operator to act.</p><p class="alert-example">Bin full. Empty now.</p></div></div>
+          </div>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">System design</p><h2>Built around the deployment, not just the model.</h2></header>
+        <ol class="workflow"><li><strong>Camera thread</strong><span>Continuously supplies the latest frame.</span></li><li><strong>Inference callback</strong><span>Returns annotations and class names.</span></li><li><strong>Thread-safe state</strong><span>Shares the latest frame and counts.</span></li><li><strong>Streamlit UI</strong><span>Renders video, totals, and alerts.</span></li></ol>
+      </div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid">
+        <article class="note-card"><h3>Why this page is simulated</h3><p>The original depended on its trained workflow, local camera, and edge inference environment. Replaying the control logic is more honest than substituting an unrelated browser classifier.</p></article>
+        <article class="note-card"><h3>Interview project</h3><p>I built CleanSort as part of my Roboflow interview process. The project demonstrated that I could connect computer vision to a usable field workflow, and it helped secure the role.</p></article>
+        <article class="note-card"><h3>What I would add next</h3><p>A recorded waste stream with saved predictions would provide a deterministic demo while preserving the behavior of the original model.</p><a href="https://github.com/superKabe/CleanSort-CV" target="_blank" rel="noreferrer">Read the source ↗</a></article>
+      </div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

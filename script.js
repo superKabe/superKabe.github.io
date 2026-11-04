@@ -46,16 +46,37 @@ const nextButton = document.querySelector("[data-carousel-next]");
 const carouselStatus = document.querySelector("[data-carousel-status]");
 const dotsContainer = document.querySelector("[data-carousel-dots]");
 let activeSlide = 0;
-let scrollFrame;
+let visualSlide = 1;
+let isCarouselAnimating = false;
+
+let firstClone;
+let lastClone;
+if (carouselTrack && slides.length > 1) {
+  firstClone = slides[0].cloneNode(true);
+  lastClone = slides.at(-1).cloneNode(true);
+  firstClone.dataset.carouselClone = "true";
+  lastClone.dataset.carouselClone = "true";
+  firstClone.removeAttribute("aria-labelledby");
+  lastClone.removeAttribute("aria-labelledby");
+  firstClone.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+  lastClone.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+  firstClone.setAttribute("aria-hidden", "true");
+  lastClone.setAttribute("aria-hidden", "true");
+  firstClone.inert = true;
+  lastClone.inert = true;
+  carouselTrack.prepend(lastClone);
+  carouselTrack.append(firstClone);
+}
 
 function updateCarousel(index) {
   activeSlide = Math.max(0, Math.min(index, slides.length - 1));
   if (carouselStatus) carouselStatus.textContent = `${activeSlide + 1} / ${slides.length}`;
-  if (previousButton) previousButton.disabled = activeSlide === 0;
-  if (nextButton) nextButton.disabled = activeSlide === slides.length - 1;
+  if (previousButton) previousButton.disabled = slides.length < 2;
+  if (nextButton) nextButton.disabled = slides.length < 2;
 
   slides.forEach((slide, slideIndex) => {
     slide.toggleAttribute("inert", slideIndex !== activeSlide);
+    slide.classList.toggle("is-active", slideIndex === activeSlide);
   });
 
   dotsContainer?.querySelectorAll("button").forEach((dot, dotIndex) => {
@@ -64,11 +85,30 @@ function updateCarousel(index) {
   });
 }
 
-function goToSlide(index, behavior = reduceMotion.matches ? "auto" : "smooth") {
+function positionCarousel(animate = true) {
   if (!carouselTrack || !slides.length) return;
-  const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
-  carouselTrack.scrollTo({ left: carouselTrack.clientWidth * nextIndex, behavior });
-  updateCarousel(nextIndex);
+  const viewport = carouselTrack.parentElement?.clientWidth || carouselTrack.clientWidth;
+  const slideWidth = slides[0].getBoundingClientRect().width;
+  const gap = Number.parseFloat(getComputedStyle(carouselTrack).columnGap) || 0;
+  const offset = (viewport - slideWidth) / 2 - visualSlide * (slideWidth + gap);
+  carouselTrack.style.transition = animate && !reduceMotion.matches ? "" : "none";
+  carouselTrack.style.transform = `translate3d(${offset}px, 0, 0)`;
+}
+
+function goToSlide(index) {
+  if (!carouselTrack || !slides.length || isCarouselAnimating) return;
+  const normalized = (index + slides.length) % slides.length;
+  const delta = index > activeSlide ? 1 : index < activeSlide ? -1 : 0;
+  if (Math.abs(index - activeSlide) > 1) {
+    activeSlide = normalized;
+    visualSlide = activeSlide + 1;
+  } else {
+    activeSlide = normalized;
+    visualSlide += delta;
+  }
+  updateCarousel(activeSlide);
+  positionCarousel(true);
+  isCarouselAnimating = !reduceMotion.matches && delta !== 0;
 }
 
 if (dotsContainer && slides.length) {
@@ -77,7 +117,14 @@ if (dotsContainer && slides.length) {
     const title = slide.querySelector("h3")?.textContent || `Project ${index + 1}`;
     dot.type = "button";
     dot.setAttribute("aria-label", `Show ${title}`);
-    dot.addEventListener("click", () => goToSlide(index));
+    dot.addEventListener("click", () => {
+      if (index === activeSlide || isCarouselAnimating) return;
+      activeSlide = index;
+      visualSlide = index + 1;
+      updateCarousel(index);
+      positionCarousel(true);
+      isCarouselAnimating = !reduceMotion.matches;
+    });
     dotsContainer.append(dot);
   });
 }
@@ -96,16 +143,21 @@ carouselTrack?.addEventListener("keydown", (event) => {
   }
 });
 
-carouselTrack?.addEventListener("scroll", () => {
-  window.cancelAnimationFrame(scrollFrame);
-  scrollFrame = window.requestAnimationFrame(() => {
-    const nextIndex = Math.round(carouselTrack.scrollLeft / Math.max(1, carouselTrack.clientWidth));
-    if (nextIndex !== activeSlide) updateCarousel(nextIndex);
-  });
-}, { passive: true });
+carouselTrack?.addEventListener("transitionend", (event) => {
+  if (event.propertyName !== "transform") return;
+  isCarouselAnimating = false;
+  if (visualSlide === 0) {
+    visualSlide = slides.length;
+    positionCarousel(false);
+  } else if (visualSlide === slides.length + 1) {
+    visualSlide = 1;
+    positionCarousel(false);
+  }
+});
 
-window.addEventListener("resize", () => goToSlide(activeSlide, "auto"));
+window.addEventListener("resize", () => positionCarousel(false));
 updateCarousel(0);
+positionCarousel(false);
 
 const portrait = document.querySelector("[data-portrait]");
 const polarBear = document.querySelector("[data-polar-bear]");

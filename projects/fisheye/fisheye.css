@@ -1,0 +1,6 @@
+.fisheye-frame img { max-height: 560px; margin-inline: auto; }
+.validation-layout { display: grid; grid-template-columns: minmax(220px,.65fr) minmax(0,1.35fr); gap: 34px; align-items: center; }
+.error-reading { border: 1px solid var(--line); border-radius: 16px; background: var(--paper); padding: 34px; text-align: center; }
+.error-reading span { display: block; color: var(--green); font-size: clamp(3.5rem,9vw,6.5rem); font-weight: 700; letter-spacing: -.07em; line-height: 1; }
+.error-reading small { display: block; margin-top: 10px; color: var(--muted); }
+@media(max-width:760px){.validation-layout{grid-template-columns:1fr}.comparison{aspect-ratio:1/1}}

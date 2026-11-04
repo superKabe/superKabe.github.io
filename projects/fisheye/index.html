@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="An interactive walkthrough of fisheye camera calibration and rectification using OpenCV." />
+    <title>Fisheye Calibration | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="fisheye.css" />
+    <script src="../shared/project.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to demo</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Fisheye Calibration</span><a href="https://github.com/superKabe/Fisheye-Calibration-and-Rectification" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell">
+        <p class="eyebrow">Project 04</p><h1>Fisheye Calibration</h1>
+        <p class="project-summary">A camera calibration workflow that uses checkerboard observations to estimate fisheye lens parameters, rectify distorted frames, and evaluate the result with reprojection error.</p>
+        <dl class="project-facts"><div><dt>Completed</dt><dd>2024</dd></div><div><dt>Dataset</dt><dd>26 checkerboard frames</dd></div><div><dt>Library</dt><dd>OpenCV fisheye</dd></div><div><dt>Valid mean error</dt><dd>12.66 pixels</dd></div></dl>
+      </div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell">
+        <header class="section-heading"><p class="eyebrow">Calibration walkthrough</p><h2>Inspect the frame before and after rectification.</h2><p>These are the actual outputs saved in the original notebook.</p></header>
+        <div class="demo-panel">
+          <div class="demo-toolbar"><div class="tab-list" data-tabs="#fisheye-stages" role="tablist" aria-label="Calibration stages"><button class="tab-button" data-tab="capture">1 Capture</button><button class="tab-button" data-tab="corners">2 Corners</button><button class="tab-button" data-tab="rectify">3 Rectify</button><button class="tab-button" data-tab="validate">4 Validate</button></div><p>Frame 7 of 26</p></div>
+          <div class="demo-stage" id="fisheye-stages">
+            <div class="stage-pane split-layout" data-pane="capture"><div class="media-frame fisheye-frame"><img src="../assets/fisheye/calibration-frame.jpg" alt="Original fisheye checkerboard calibration frame" /></div><div class="stage-copy"><h3>Collect varied checkerboard views</h3><p>The lens model needs the checkerboard at different positions and angles. Frames where the pattern is incomplete or too distorted weaken the calibration.</p></div></div>
+            <div class="stage-pane split-layout" data-pane="corners" hidden><div class="media-frame"><img src="../assets/fisheye/fisheye-cell-06-01.png" alt="Grayscale checkerboard frame used for corner detection" /></div><div class="stage-copy"><h3>Detect and refine corners</h3><p><code>findChessboardCorners</code> locates the pattern, then <code>cornerSubPix</code> improves the coordinates before calibration.</p></div></div>
+            <div class="stage-pane" data-pane="rectify" hidden><div class="comparison" data-comparison style="--position:50%"><img src="../assets/fisheye/fisheye-cell-06-01.png" alt="Distorted fisheye frame" /><div class="comparison-after"><img src="../assets/fisheye/fisheye-cell-06-02.png" alt="Rectified fisheye frame" /></div><div class="comparison-line" aria-hidden="true"></div><input type="range" min="0" max="100" value="50" aria-label="Compare distorted and rectified frames" /></div><p class="media-caption">Drag to compare the original fisheye projection with the OpenCV rectification.</p></div>
+            <div class="stage-pane validation-layout" data-pane="validate" hidden><div class="error-reading"><span>12.66</span><small>pixel mean error across valid samples</small></div><div class="stage-copy"><h3>Check reprojection error</h3><p>OpenCV projects the known checkerboard points back into each image. The distance from the detected corners measures calibration quality. Frames 3 and 17 were excluded from the valid-sample mean after producing weak results.</p></div></div>
+          </div>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">Method</p><h2>The notebook follows the full calibration loop.</h2></header><ol class="workflow"><li><strong>Object points</strong><span>Define the checkerboard in world coordinates.</span></li><li><strong>Image points</strong><span>Detect the corresponding pixel locations.</span></li><li><strong>Estimate K and D</strong><span>Solve intrinsics and distortion coefficients.</span></li><li><strong>Remap pixels</strong><span>Generate and apply the rectification maps.</span></li></ol></div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid"><article class="note-card"><h3>Original build</h3><p>A Jupyter notebook using NumPy, OpenCV, and Matplotlib. The work includes calibration, rectification, reprojection, and failure analysis.</p></article><article class="note-card"><h3>Why calibration matters</h3><p>Wide-angle cameras provide useful field of view, but geometry-dependent tasks need a known camera model before measurements or localization are trustworthy.</p></article><article class="note-card"><h3>Browser presentation</h3><p>The page does not recompute a 26-frame calibration. It exposes the exact notebook artifacts in a focused step-by-step comparison.</p><a href="https://github.com/superKabe/Fisheye-Calibration-and-Rectification" target="_blank" rel="noreferrer">Open the notebook ↗</a></article></div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>

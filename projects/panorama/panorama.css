@@ -1,0 +1,13 @@
+.warp-stage { display: grid; gap: 28px; }
+.warp-visual { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 11%; min-height: 360px; align-items: center; }
+.warp-card { position: relative; z-index: 1; overflow: hidden; border: 6px solid white; border-radius: 10px; box-shadow: 0 16px 35px rgba(29,35,37,.14); }
+.warp-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.warp-card.left { transform: rotate(-2deg); }
+.warp-card.right { transform: perspective(800px) rotateY(-13deg) rotate(2deg); }
+.match-lines { position: absolute; z-index: 2; inset: 0; pointer-events: none; }
+.match-lines i { position: absolute; left: 42%; width: 18%; height: 1px; background: rgba(49,92,76,.7); transform-origin: left; }
+.match-lines i:nth-child(1){top:32%;transform:rotate(8deg)}.match-lines i:nth-child(2){top:44%;transform:rotate(-4deg)}.match-lines i:nth-child(3){top:58%;transform:rotate(5deg)}.match-lines i:nth-child(4){top:68%;transform:rotate(-7deg)}
+.panorama-result img { min-height: 360px; object-fit: cover; }
+.match-output { height: 500px; }
+.match-output img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+@media(max-width:760px){.warp-visual{min-height:240px;gap:5%}.match-lines i{left:45%;width:10%}.panorama-result img{min-height:0}}

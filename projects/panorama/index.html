@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="An interactive walkthrough of panorama stitching with ORB features, matching, homography estimation, and perspective warping." />
+    <title>Panorama Stitching | Kaden Suderman</title>
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="panorama.css" />
+    <script src="../shared/project.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#demo">Skip to demo</a>
+    <header class="project-nav"><div class="shell project-nav-row"><a href="../../">← Kaden Suderman</a><span class="nav-project-name">Panorama Stitching</span><a href="https://github.com/superKabe/Panorama-Image-Stitching" target="_blank" rel="noreferrer">Source ↗</a></div></header>
+    <main>
+      <section class="project-hero"><div class="shell"><p class="eyebrow">Project 05</p><h1>Panorama Stitching</h1><p class="project-summary">A classical vision pipeline that finds overlap across multiple photographs, estimates perspective transformations, and builds a wider view one image at a time.</p><dl class="project-facts"><div><dt>Completed</dt><dd>2024</dd></div><div><dt>Feature detector</dt><dd>ORB</dd></div><div><dt>Matcher</dt><dd>Hamming distance</dd></div><div><dt>Geometry</dt><dd>RANSAC homography</dd></div></dl></div></section>
+
+      <section class="project-section alt" id="demo"><div class="shell"><header class="section-heading"><p class="eyebrow">Pipeline explorer</p><h2>Move from source frames to a stitched scene.</h2><p>The stages below use the original photographs and notebook outputs from image set one.</p></header>
+        <div class="demo-panel"><div class="demo-toolbar"><div class="tab-list" data-tabs="#panorama-stages" role="tablist" aria-label="Panorama stages"><button class="tab-button" data-tab="inputs">1 Inputs</button><button class="tab-button" data-tab="matches">2 Matches</button><button class="tab-button" data-tab="warp">3 Warp</button><button class="tab-button" data-tab="result">4 Result</button></div><p>Four overlapping frames</p></div>
+          <div class="demo-stage" id="panorama-stages">
+            <div class="stage-pane" data-pane="inputs"><div class="input-grid"><img src="../assets/panorama/input-1.jpg" alt="Panorama source frame one" /><img src="../assets/panorama/input-2.jpg" alt="Panorama source frame two" /><img src="../assets/panorama/input-3.jpg" alt="Panorama source frame three" /><img src="../assets/panorama/input-4.jpg" alt="Panorama source frame four" /></div><p class="media-caption">The notebook reorders the sequence around a central reference image, then alternates the stitching direction to control accumulated distortion.</p></div>
+            <div class="stage-pane split-layout" data-pane="matches" hidden><div class="media-frame match-output"><img src="../assets/panorama/feature-matching.jpg" alt="ORB feature matches and intermediate panorama stages" /></div><div class="stage-copy"><h3>Keep the 50 strongest matches</h3><p>ORB describes repeatable image features. A brute-force matcher compares their binary descriptors with Hamming distance and retains the lowest-distance correspondences.</p></div></div>
+            <div class="stage-pane warp-stage" data-pane="warp" hidden><div class="warp-visual"><div class="warp-card left"><img src="../assets/panorama/input-2.jpg" alt="Reference panorama frame" /></div><div class="match-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="warp-card right"><img src="../assets/panorama/input-3.jpg" alt="Frame transformed into the reference coordinate system" /></div></div><div class="stage-copy"><h3>Estimate a robust homography</h3><p>RANSAC rejects inconsistent matches while estimating the 3 × 3 transform. <code>warpPerspective</code> then maps the next image into the current panorama.</p></div></div>
+            <div class="stage-pane split-layout" data-pane="result" hidden><div class="media-frame panorama-result"><img src="../assets/panorama/final-panorama.jpg" alt="Final stitched panorama of the university quadrangle" /></div><div class="stage-copy"><h3>Inspect the result and the seams</h3><p>The final frame expands the field of view successfully, but it also exposes the limits of simple overwrite blending and repeated planar homographies.</p></div></div>
+          </div>
+        </div>
+      </div></section>
+
+      <section class="project-section"><div class="shell"><header class="section-heading"><p class="eyebrow">Method</p><h2>Each stage solves a different failure mode.</h2></header><ol class="workflow"><li><strong>Detect</strong><span>Find repeatable ORB keypoints.</span></li><li><strong>Match</strong><span>Pair similar binary descriptors.</span></li><li><strong>Estimate</strong><span>Use RANSAC to reject outliers.</span></li><li><strong>Compose</strong><span>Warp and add each image to the canvas.</span></li></ol></div></section>
+
+      <section class="project-section alt"><div class="shell"><div class="notes-grid"><article class="note-card"><h3>Original build</h3><p>A Jupyter notebook testing five image sets with two to five frames. It records both successful panoramas and cases where repeated structure breaks matching.</p></article><article class="note-card"><h3>Observed limits</h3><p>Planar warps accumulate perspective error. Repeated doors and windows can create false matches, while direct image replacement leaves visible seams.</p></article><article class="note-card"><h3>Next iteration</h3><p>Cylindrical projection, match filtering, exposure compensation, seam finding, and multiband blending would make the pipeline more robust.</p><a href="https://github.com/superKabe/Panorama-Image-Stitching" target="_blank" rel="noreferrer">Open the notebook ↗</a></article></div></div></section>
+    </main>
+    <footer class="project-footer"><div class="shell project-footer-row"><p>© <span data-current-year></span> Kaden Suderman</p><a href="../../#work">Back to selected work</a></div></footer>
+  </body>
+</html>
