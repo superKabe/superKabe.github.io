@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-11T19:30:29.639026+00:00",
+  "model": "Qwen/Qwen3-VL-4B-Instruct",
+  "prompt": "timeline",
+  "video": "data\\processed\\indego_mechanical_desk_000_070.mp4",
+  "fps": 1.0,
+  "max_pixels_per_frame": 131072,
+  "total_pixels": 6144000,
+  "max_new_tokens": 512,
+  "load_seconds": 280.016,
+  "inference_seconds": 25.198,
+  "peak_vram_gb": 18.498,
+  "input_tokens": 5620,
+  "output_tokens": 342,
+  "gpu": "NVIDIA GeForce RTX 3090 Ti",
+  "torch_version": "2.11.0+cu128",
+  "python_version": "3.11.18",
+  "parse_error": null,
+  "validation_errors": [
+    "events[0] has invalid interval [0.0, 0.0] for 70.0s clip"
+  ]
+}

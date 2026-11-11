@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "event_type": "set camera",
+      "start_s": 0.0,
+      "end_s": 2.0,
+      "evidence": "The person is holding a phone and adjusting the camera setup, indicating they are setting up the camera.",
+      "confidence": 0.9
+    },
+    {
+      "event_type": "put on gloves",
+      "start_s": 12.0,
+      "end_s": 18.0,
+      "evidence": "The person is seen putting on gloves, one at a time, with clear visibility of the hands and gloves.",
+      "confidence": 0.95
+    },
+    {
+      "event_type": "pick up tools",
+      "start_s": 22.0,
+      "end_s": 26.0,
+      "evidence": "The person picks up a tool from the table and holds it in their hand, indicating they are picking up tools.",
+      "confidence": 0.9
+    },
+    {
+      "event_type": "fastening bolt",
+      "start_s": 48.0,
+      "end_s": 69.0,
+      "evidence": "The person is seen using a tool to fasten bolts on a metal structure, with clear visibility of the hands and the tool being used.",
+      "confidence": 0.95
+    }
+  ],
+  "uncertain_intervals": []
+}

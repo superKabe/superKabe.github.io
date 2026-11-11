@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Compare human annotations with two local Qwen3-VL event timelines on an industrial assembly clip."
+    />
+    <meta name="theme-color" content="#f7f6f1" />
+    <title>Industrial Video Timeline Audit | Kaden Suderman</title>
+    <link rel="icon" href="../../img/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="../shared/project.css" />
+    <link rel="stylesheet" href="qwen-timeline.css" />
+    <script src="../shared/project.js" defer></script>
+    <script src="qwen-timeline.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#comparison">Skip to timeline comparison</a>
+
+    <header class="project-nav">
+      <div class="shell project-nav-row">
+        <a href="../../">← Kaden Suderman</a>
+        <span class="nav-project-name">Industrial Video Timeline Audit</span>
+        <a
+          href="https://github.com/superKabe/qwen-industrial-video-timeline"
+          target="_blank"
+          rel="noreferrer"
+        >Source ↗</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="project-hero qwen-hero">
+        <div class="shell project-hero-grid">
+          <div>
+            <p class="eyebrow">Project 11 · Local VLM evaluation</p>
+            <h1>Seeing the work is not the same as timing it.</h1>
+          </div>
+          <div class="project-summary">
+            <p class="lead">
+              I tested whether local Qwen3-VL models could turn egocentric industrial
+              video into an auditable event log. The models understood the workflow,
+              but their timestamps were not reliable enough for audit.
+            </p>
+            <dl class="project-facts">
+              <div><dt>Evidence</dt><dd>70 frames at 1 FPS</dd></div>
+              <div><dt>Hardware</dt><dd>RTX 3090 Ti, 24 GB</dd></div>
+              <div><dt>Evaluation</dt><dd>Exact label + tIoU ≥ 0.30</dd></div>
+              <div><dt>Interface</dt><dd>Vanilla JavaScript</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="comparison-section" id="comparison" aria-labelledby="comparison-title">
+        <div class="shell">
+          <header class="section-heading comparison-heading">
+            <div>
+              <p class="eyebrow">Interactive audit surface</p>
+              <h2 id="comparison-title">Inspect the prediction against the clip.</h2>
+            </div>
+            <p>
+              Play the video or click an event. The playhead, scrubber, active labels,
+              and event detail stay synchronized.
+            </p>
+          </header>
+
+          <div class="audit-workspace">
+            <div class="video-column">
+              <div class="video-frame">
+                <video
+                  id="source-video"
+                  preload="metadata"
+                  playsinline
+                  controls
+                  src="assets/indego_mechanical_desk_000_070.mp4"
+                >
+                  Your browser does not support HTML video.
+                </video>
+                <div class="video-hud" aria-hidden="true">
+                  <span>MECHANICAL DESK / EGOCENTRIC</span>
+                  <span id="hud-time">00:00.0</span>
+                </div>
+              </div>
+
+              <div class="video-fallback" id="video-fallback" hidden>
+                <div>
+                  <strong>Hosted video unavailable.</strong>
+                  <span>Select the 70-second IndEgo excerpt to keep playback local.</span>
+                </div>
+                <label class="file-button" for="video-file">Choose video</label>
+                <input id="video-file" type="file" accept="video/*" />
+              </div>
+
+              <div class="now-reading" aria-live="polite">
+                <span class="now-label">At this frame</span>
+                <div class="now-events">
+                  <span class="now-pill human" id="now-human">Human: none</span>
+                  <span class="now-pill model" id="now-model">Qwen: none</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="run-panel" aria-label="Active run summary">
+              <div class="run-heading">
+                <div>
+                  <p class="eyebrow">Active run</p>
+                  <h3 id="active-model-title">Qwen3-VL 4B</h3>
+                </div>
+                <span class="precision-badge" id="precision-badge">BF16</span>
+              </div>
+              <div class="model-switcher" id="model-switcher" aria-label="Select model run"></div>
+              <div class="metrics" id="metrics" aria-label="Evaluation and runtime metrics"></div>
+              <p class="run-finding" id="finding-copy"></p>
+            </aside>
+          </div>
+
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <div>
+                <p class="eyebrow">Human reference vs. model prediction</p>
+                <h3>The timeline is the evaluation.</h3>
+              </div>
+              <div class="legend" aria-label="Event status legend">
+                <span><i class="legend-swatch matched"></i>Matched</span>
+                <span><i class="legend-swatch missed"></i>Missed or mislocalized</span>
+              </div>
+            </div>
+
+            <div class="scrubber-wrap">
+              <label for="scrubber">Video position</label>
+              <div class="scrubber-control">
+                <span id="current-time">00:00.0</span>
+                <input
+                  id="scrubber"
+                  type="range"
+                  min="0"
+                  max="70"
+                  value="0"
+                  step="0.05"
+                  aria-valuetext="0 seconds"
+                />
+                <span id="duration-time">01:10.0</span>
+              </div>
+            </div>
+
+            <div class="timeline-scroll" tabindex="0" aria-label="Scrollable event timeline">
+              <div class="timeline-grid">
+                <div class="track-labels" aria-hidden="true">
+                  <div class="ruler-spacer"></div>
+                  <div><span class="track-dot human-dot"></span><strong>Human</strong><small>reference</small></div>
+                  <div><span class="track-dot model-dot"></span><strong id="model-track-label">Qwen 4B</strong><small>prediction</small></div>
+                </div>
+                <div class="tracks" id="tracks">
+                  <div class="ruler" id="ruler" aria-hidden="true"></div>
+                  <div class="event-track human-track" id="human-track" aria-label="Human annotations"></div>
+                  <div class="event-track model-track" id="model-track" aria-label="Model predictions"></div>
+                  <div class="playhead" id="playhead" aria-hidden="true"><span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="event-detail" id="event-detail" aria-live="polite">
+              <div class="detail-time">SELECT<br />AN EVENT</div>
+              <div>
+                <p class="detail-type">Inspection</p>
+                <h3>Click any timeline block to seek the video.</h3>
+                <p>The selected event’s timing, status, evidence, and temporal IoU appear here.</p>
+              </div>
+              <div class="detail-score"><span>tIoU</span><strong>n/a</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-title">
+        <div class="shell">
+          <header class="section-heading results-heading">
+            <div>
+              <p class="eyebrow">Result</p>
+              <h2 id="results-title">More capacity helped, but did not solve the timeline.</h2>
+            </div>
+            <p>
+              The 8B run matched one additional event and localized the matched events
+              more closely. It still merged two fastening actions and missed the
+              leg-and-foot connection.
+            </p>
+          </header>
+
+          <div class="result-grid">
+            <article>
+              <span>4B · BF16</span>
+              <strong>2 / 7 matched</strong>
+              <p>F1 0.36 · mean tIoU 0.41 · median boundary error 4.26 s</p>
+            </article>
+            <article class="result-highlight">
+              <span>8B · INT8 weights / FP16 compute</span>
+              <strong>3 / 7 matched</strong>
+              <p>F1 0.55 · mean tIoU 0.51 · median boundary error 2.27 s</p>
+            </article>
+            <article>
+              <span>Constraint</span>
+              <strong>Operational comparison</strong>
+              <p>Model size and weight precision changed together, so this is not a precision-controlled benchmark.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-section" aria-labelledby="method-title">
+        <div class="shell method-grid">
+          <div>
+            <p class="eyebrow">Method and limits</p>
+            <h2 id="method-title">Built for inspection, not a production claim.</h2>
+          </div>
+          <div class="method-notes">
+            <article>
+              <h3>Evaluation</h3>
+              <p>
+                I sampled 70 frames at 1 FPS, supplied a fixed action vocabulary, and
+                required structured JSON intervals. Predictions match one-to-one only
+                when the labels agree and temporal IoU reaches 0.30.
+              </p>
+            </article>
+            <article>
+              <h3>What this shows</h3>
+              <p>
+                A VLM can recognize the overall workflow while producing a timeline
+                that is not trustworthy enough for quality, safety, or incident audit.
+                Sampling, validation, failure handling, and human review remain part of
+                the system.
+              </p>
+            </article>
+            <article class="source-note">
+              <h3>Video source</h3>
+              <p>
+                Processed 70-second excerpt from the
+                <a href="https://huggingface.co/datasets/FraunhoferIPK/IndEgo" target="_blank" rel="noreferrer">IndEgo dataset by Fraunhofer IPK</a>,
+                licensed under
+                <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.
+                The source clip was trimmed to the annotated interval and re-encoded for this case study.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="project-footer">
+      <div class="shell project-footer-row">
+        <p>© <span data-current-year></span> Kaden Suderman</p>
+        <a href="../../#work">Back to selected work</a>
+      </div>
+    </footer>
+  </body>
+</html>

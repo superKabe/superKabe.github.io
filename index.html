@@ -84,13 +84,32 @@
             </div>
             <div class="carousel-controls" aria-label="Project carousel controls">
               <button type="button" aria-label="Previous project" data-carousel-previous>←</button>
-              <span aria-live="polite" data-carousel-status>1 / 10</span>
+              <span aria-live="polite" data-carousel-status>1 / 11</span>
               <button type="button" aria-label="Next project" data-carousel-next>→</button>
             </div>
           </header>
 
           <div class="project-carousel" data-carousel>
             <div class="project-track" data-carousel-track tabindex="0" aria-label="Selected projects">
+              <article class="project-slide" aria-labelledby="project-qwen-title" data-project-slide>
+                <div class="project-card">
+                  <div class="project-image project-card-media project-card-media-dark">
+                    <img src="assets/images/projects/qwen-timeline.jpg" alt="Egocentric view of a mechanical desk assembly from the IndEgo dataset" loading="eager" />
+                    <p>Human annotations and local Qwen3-VL predictions aligned to the same 70-second clip.</p>
+                  </div>
+                  <div class="project-copy">
+                    <div class="project-meta"><span>11</span><span>2026</span><span>Interactive case study</span></div>
+                    <h3 id="project-qwen-title">Industrial Video Timeline Audit</h3>
+                    <p>I tested whether local Qwen3-VL models could convert an assembly video into a timestamped event log, then built an audit interface to make every timing error inspectable.</p>
+                    <ul class="project-tags" aria-label="Project topics"><li>Qwen3-VL</li><li>Temporal grounding</li><li>Local inference</li></ul>
+                    <div class="button-row">
+                      <a class="button button-dark" href="projects/qwen-timeline/">Audit the timeline</a>
+                      <a class="text-link" href="https://github.com/superKabe/qwen-industrial-video-timeline" target="_blank" rel="noreferrer">Source code ↗</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
               <article class="project-slide" aria-labelledby="project-isp-title" data-project-slide>
                 <div class="project-card">
                   <div class="project-image">

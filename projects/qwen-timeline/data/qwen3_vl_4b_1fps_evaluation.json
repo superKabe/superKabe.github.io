@@ -1,0 +1,125 @@
+{
+  "threshold_temporal_iou": 0.3,
+  "summary": {
+    "ground_truth_events": 7,
+    "predicted_events": 4,
+    "matched_events": 2,
+    "missed_events": 5,
+    "unmatched_predictions": 2,
+    "unsupported_labels": 0,
+    "mislocalized_predictions": 2,
+    "duplicate_predictions": 0,
+    "precision": 0.5,
+    "recall": 0.2857,
+    "f1": 0.3636,
+    "mean_temporal_iou": 0.4124,
+    "median_boundary_error_s": 4.258
+  },
+  "matches": [
+    {
+      "ground_truth_index": 1,
+      "prediction_index": 1,
+      "ground_truth": {
+        "event_type": "put on gloves",
+        "start_s": 11.483,
+        "end_s": 21.612,
+        "source_start_s": 11.483,
+        "source_end_s": 21.612
+      },
+      "prediction": {
+        "event_type": "put on gloves",
+        "start_s": 12.0,
+        "end_s": 16.0,
+        "evidence": "The person is seen putting on black gloves over their hands, which is clearly visible in the frames from 12 to 16 seconds.",
+        "confidence": 0.9
+      },
+      "temporal_iou": 0.3949,
+      "start_error_s": 0.517,
+      "end_error_s": -5.612
+    },
+    {
+      "ground_truth_index": 5,
+      "prediction_index": 3,
+      "ground_truth": {
+        "event_type": "fastening bolt",
+        "start_s": 50.905,
+        "end_s": 59.932,
+        "source_start_s": 50.905,
+        "source_end_s": 59.932
+      },
+      "prediction": {
+        "event_type": "fastening bolt",
+        "start_s": 48.0,
+        "end_s": 69.0,
+        "evidence": "The person is seen using a tool to fasten a bolt into a metal frame, which is visible in the frames from 48 to 69 seconds.",
+        "confidence": 0.9
+      },
+      "temporal_iou": 0.4299,
+      "start_error_s": -2.905,
+      "end_error_s": 9.068
+    }
+  ],
+  "missed": [
+    {
+      "event_type": "set camera",
+      "start_s": 1.148,
+      "end_s": 4.589,
+      "source_start_s": 1.148,
+      "source_end_s": 4.589
+    },
+    {
+      "event_type": "pick up tools",
+      "start_s": 23.635,
+      "end_s": 25.687,
+      "source_start_s": 23.635,
+      "source_end_s": 25.687
+    },
+    {
+      "event_type": "pick up tools",
+      "start_s": 30.44,
+      "end_s": 32.102,
+      "source_start_s": 30.44,
+      "source_end_s": 32.102
+    },
+    {
+      "event_type": "connect leg and feet",
+      "start_s": 37.718,
+      "end_s": 48.712,
+      "source_start_s": 37.718,
+      "source_end_s": 48.712
+    },
+    {
+      "event_type": "fastening bolt",
+      "start_s": 62.645,
+      "end_s": 68.986,
+      "source_start_s": 62.645,
+      "source_end_s": 68.986
+    }
+  ],
+  "unmatched_predictions": [
+    {
+      "prediction_index": 0,
+      "category": "mislocalized_prediction",
+      "best_same_label_iou": 0.0,
+      "event": {
+        "event_type": "set camera",
+        "start_s": 0.0,
+        "end_s": 0.0,
+        "evidence": "The camera is mounted on a tripod and is being adjusted by the person's hand at the beginning of the video.",
+        "confidence": 0.9
+      }
+    },
+    {
+      "prediction_index": 2,
+      "category": "mislocalized_prediction",
+      "best_same_label_iou": 0.0,
+      "event": {
+        "event_type": "pick up tools",
+        "start_s": 28.0,
+        "end_s": 30.0,
+        "evidence": "The person picks up a tool (a screwdriver or similar) from the floor and holds it in their hand, which is visible in the frames from 28 to 30 seconds.",
+        "confidence": 0.9
+      }
+    }
+  ]
+}

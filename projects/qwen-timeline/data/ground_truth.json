@@ -1,0 +1,67 @@
+{
+  "clip": {
+    "filename": "indego_mechanical_desk_000_070.mp4",
+    "source_filename": "User_16_414_2101_2_480.mp4",
+    "source_start_s": 0.0,
+    "duration_s": 70.0
+  },
+  "events": [
+    {
+      "event_type": "set camera",
+      "start_s": 1.148,
+      "end_s": 4.589,
+      "source_start_s": 1.148,
+      "source_end_s": 4.589
+    },
+    {
+      "event_type": "put on gloves",
+      "start_s": 11.483,
+      "end_s": 21.612,
+      "source_start_s": 11.483,
+      "source_end_s": 21.612
+    },
+    {
+      "event_type": "pick up tools",
+      "start_s": 23.635,
+      "end_s": 25.687,
+      "source_start_s": 23.635,
+      "source_end_s": 25.687
+    },
+    {
+      "event_type": "pick up tools",
+      "start_s": 30.44,
+      "end_s": 32.102,
+      "source_start_s": 30.44,
+      "source_end_s": 32.102
+    },
+    {
+      "event_type": "connect leg and feet",
+      "start_s": 37.718,
+      "end_s": 48.712,
+      "source_start_s": 37.718,
+      "source_end_s": 48.712
+    },
+    {
+      "event_type": "fastening bolt",
+      "start_s": 50.905,
+      "end_s": 59.932,
+      "source_start_s": 50.905,
+      "source_end_s": 59.932
+    },
+    {
+      "event_type": "fastening bolt",
+      "start_s": 62.645,
+      "end_s": 68.986,
+      "source_start_s": 62.645,
+      "source_end_s": 68.986
+    }
+  ],
+  "action_vocabulary": [
+    "connect leg and feet",
+    "fastening bolt",
+    "pick up tools",
+    "put on gloves",
+    "set camera"
+  ],
+  "annotation_note": "Human temporal segments from IndEgo, clipped and shifted to the extracted video."
+}

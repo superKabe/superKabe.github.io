@@ -19,6 +19,8 @@ WebAssembly when needed.
 - A dedicated ISP demo at `/projects/isp/` that processes the bundled raw Bayer
   frame locally in a Web Worker and exposes the implementation details for every
   stage.
+- An industrial-video timeline audit at `/projects/qwen-timeline/` with synchronized
+  playback, human and Qwen3-VL event tracks, run comparison, and data-backed metrics.
 - A small portrait Easter egg built with CSS animation and an accessible button.
 - A browser résumé page at `/resume/` using the current PDF.
 
