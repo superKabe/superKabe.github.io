@@ -69,18 +69,20 @@
 
           <div class="audit-workspace">
             <aside class="run-panel" aria-label="Active run summary">
-              <div class="run-controls">
-                <div class="run-heading">
-                  <div>
-                    <p class="eyebrow">Active run</p>
-                    <h3 id="active-model-title">Qwen3-VL 4B</h3>
+              <div class="run-summary">
+                <div class="run-controls">
+                  <div class="run-heading">
+                    <div>
+                      <p class="eyebrow">Active run</p>
+                      <h3 id="active-model-title">Qwen3-VL 4B</h3>
+                    </div>
+                    <span class="precision-badge" id="precision-badge">BF16</span>
                   </div>
-                  <span class="precision-badge" id="precision-badge">BF16</span>
+                  <div class="model-switcher" id="model-switcher" aria-label="Select model run"></div>
                 </div>
-                <div class="model-switcher" id="model-switcher" aria-label="Select model run"></div>
+                <p class="run-finding" id="finding-copy"></p>
               </div>
               <div class="metrics" id="metrics" aria-label="Evaluation and runtime metrics"></div>
-              <p class="run-finding" id="finding-copy"></p>
             </aside>
 
             <div class="video-column">
@@ -185,27 +187,66 @@
               <h2 id="results-title">Results</h2>
             </div>
             <p>
-              The 8B run matched one additional event and localized the matched events
-              more closely. It still merged two fastening actions and missed the
-              leg-and-foot connection.
+              The strict score measures distinct, correctly localized instances. Visual
+              review shows stronger action recognition than that score alone suggests.
             </p>
           </header>
 
           <div class="result-grid">
             <article>
-              <span>4B · BF16</span>
+              <span>Strict · 4B BF16</span>
               <strong>2 / 7 matched</strong>
               <p>F1 0.36 · mean tIoU 0.41 · median boundary error 4.26 s</p>
             </article>
             <article class="result-highlight">
-              <span>8B · INT8 weights / FP16 compute</span>
+              <span>Strict · 8B INT8</span>
               <strong>3 / 7 matched</strong>
               <p>F1 0.55 · mean tIoU 0.51 · median boundary error 2.27 s</p>
             </article>
             <article>
-              <span>Constraint</span>
-              <strong>Operational comparison</strong>
-              <p>Model size and weight precision changed together, so this is not a precision-controlled benchmark.</p>
+              <span>Independent coverage</span>
+              <strong>3 / 7 · 4 / 7</strong>
+              <p>4B and 8B coverage when one prediction may overlap multiple reference intervals.</p>
+            </article>
+            <article>
+              <span>Action types · both runs</span>
+              <strong>4 / 5 recognized</strong>
+              <p>Both found camera setup, gloves, tool pickup, and fastening. Both missed the connection label.</p>
+            </article>
+          </div>
+
+          <div class="analysis-notes" aria-label="Interpretation of timeline results">
+            <article>
+              <h3>Recognition was better than segmentation</h3>
+              <p>
+                Both models recovered 80% of the action categories, but they were much
+                less reliable at separating repeated events and matching human boundaries.
+                The useful result is a coarse workflow timeline, not a precise event log.
+              </p>
+            </article>
+            <article>
+              <h3>Several misses need context</h3>
+              <p>
+                Camera setup was semantically plausible but too short or invalid. The 4B
+                tool pickup aligned with visible handling within roughly one sampled frame
+                of the annotation. These are temporal disagreements, not unsupported labels.
+              </p>
+            </article>
+            <article>
+              <h3>Fastening exposed the scoring tradeoff</h3>
+              <p>
+                Each model returned one 48–69 s fastening phase. It overlaps both human
+                intervals at tIoU 0.430 and 0.302, but one-to-one matching can credit only
+                one. That is useful for indexing, but insufficient for counting operations.
+              </p>
+            </article>
+            <article>
+              <h3>The connection event was a real miss</h3>
+              <p>
+                Neither model selected “connect leg and feet.” The footage shows metal
+                parts being joined, but the dataset label depends on product-specific object
+                names. This is both a model miss and an ontology challenge.
+              </p>
             </article>
           </div>
         </div>
@@ -227,12 +268,39 @@
               </p>
             </article>
             <article>
-              <h3>What this shows</h3>
+              <h3>Two useful views</h3>
               <p>
-                A VLM can recognize the overall workflow while producing a timeline
-                that is not trustworthy enough for quality, safety, or incident audit.
-                Sampling, validation, failure handling, and human review remain part of
-                the system.
+                Strict matching asks whether each event was recovered as a separate
+                instance. Independent coverage asks whether relevant activity appeared in
+                the right part of the video. The second view adds context without replacing
+                the reproducible strict score.
+              </p>
+            </article>
+            <article>
+              <h3>Limits of the comparison</h3>
+              <p>
+                Human boundaries and class names involve judgment, while 1 FPS sampling
+                cannot support millisecond precision. Model confidence values are not
+                calibrated. Model size and weight precision also changed together, so the
+                4B-versus-8B result is not a precision-controlled benchmark.
+              </p>
+            </article>
+            <article>
+              <h3>Practical use</h3>
+              <p>
+                The current system can index long recordings, draft timelines, retrieve
+                evidence, and accelerate annotation with a person reviewing the output. It
+                is not suitable by itself for safety enforcement, closed-loop control,
+                compliance evidence, or exact operation counting.
+              </p>
+            </article>
+            <article>
+              <h3>Why local processing</h3>
+              <p>
+                Industrial video can contain proprietary processes, workers, and restricted
+                facilities. Local analysis keeps raw footage near its source and can export
+                only structured events or reviewed evidence. This test ran offline on an RTX
+                3090 Ti; it was not an embedded-edge or real-time deployment.
               </p>
             </article>
             <article class="source-note">

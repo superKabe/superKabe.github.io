@@ -207,12 +207,15 @@
 }
 
 .run-panel {
-  display: grid;
-  grid-template-columns: 230px minmax(0, 1fr) minmax(230px, .8fr);
-  gap: 18px;
-  align-items: center;
-  padding: 14px;
   border-bottom: 1px solid var(--line);
+}
+
+.run-summary {
+  display: grid;
+  grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr);
+  gap: 28px;
+  align-items: center;
+  padding: 14px 18px;
 }
 
 .run-heading {
@@ -243,7 +246,7 @@
 .model-switcher {
   display: flex;
   gap: 7px;
-  margin: 14px 0 0;
+  margin: 12px 0 0;
 }
 
 .model-button {
@@ -274,14 +277,16 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
 }
 
 .metric {
   min-height: 72px;
-  padding: 10px;
+  padding: 11px 18px;
   border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+}
+
+.metric:last-child {
+  border-right: 0;
 }
 
 .metric-label {
@@ -311,7 +316,7 @@
 
 .run-finding {
   margin: 0;
-  padding-left: 16px;
+  padding-left: 20px;
   border-left: 1px solid var(--line);
   color: var(--muted);
   font-size: .83rem;
@@ -665,7 +670,7 @@
 
 .result-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
@@ -700,6 +705,35 @@
   margin: 0;
   color: var(--muted);
   font-size: .86rem;
+}
+
+.analysis-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.analysis-notes article {
+  padding: 22px 24px 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.analysis-notes article:nth-child(even) {
+  padding-right: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+
+.analysis-notes h3 {
+  margin: 0 0 8px;
+  font-size: .95rem;
+}
+
+.analysis-notes p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
 }
 
 .result-highlight {
@@ -805,15 +839,12 @@
 }
 
 @media (max-width: 1100px) {
-  .run-panel {
-    grid-template-columns: 220px minmax(0, 1fr);
+  .run-summary {
+    grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
   }
 
-  .run-finding {
-    grid-column: 1 / -1;
-    padding: 12px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
+  .metric {
+    padding-inline: 12px;
   }
 }
 
@@ -836,7 +867,7 @@
   }
 
   .result-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .glossary-grid {
@@ -857,17 +888,39 @@
     display: none;
   }
 
-  .run-panel {
+  .run-summary {
     display: block;
+    padding: 14px;
   }
 
   .metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 18px;
   }
 
   .run-finding {
-    margin-top: 16px;
+    margin-top: 14px;
+    padding: 14px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .metric:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .metric:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+
+  .result-grid,
+  .analysis-notes {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-notes article,
+  .analysis-notes article:nth-child(even) {
+    padding: 20px 0;
+    border-left: 0;
   }
 
   .timeline-heading {

@@ -9,6 +9,7 @@ const DATA_URLS = {
       trackLabel: "Qwen 4B",
       title: "Qwen3-VL 4B",
       precision: "BF16",
+      coverage: 3,
       prediction: "data/timeline_qwen3-vl-4b-instruct_1fps_prediction.json",
       evaluation: "data/qwen3_vl_4b_1fps_evaluation.json",
       run: "data/timeline_qwen3-vl-4b-instruct_1fps_run.json",
@@ -19,6 +20,7 @@ const DATA_URLS = {
       trackLabel: "Qwen 8B",
       title: "Qwen3-VL 8B",
       precision: "INT8",
+      coverage: 4,
       prediction: "data/timeline_qwen3-vl-8b-instruct_1fps_int8_prediction.json",
       evaluation: "data/qwen3_vl_8b_1fps_int8_evaluation.json",
       run: "data/timeline_qwen3-vl-8b-instruct_1fps_int8_run.json",
@@ -195,7 +197,7 @@ function renderMetrics(model) {
     createMetric("Inference", model.run.inference_seconds.toFixed(1), "sec"),
     createMetric("Peak VRAM", model.run.peak_vram_gb.toFixed(1), "GB"),
   );
-  ui.findingCopy.textContent = `${summary.matched_events} of ${summary.ground_truth_events} reference events matched. Precision ${summary.precision.toFixed(2)}, recall ${summary.recall.toFixed(2)}. Short and repeated actions remain the clearest failure mode.`;
+  ui.findingCopy.textContent = `Strict matching recovered ${summary.matched_events} of ${summary.ground_truth_events} event instances. Independent coverage rises to ${model.coverage} of ${summary.ground_truth_events}; 4 of 5 action types were recognized. The main weakness was timing and instance separation.`;
 }
 
 function statusClass(status) {
