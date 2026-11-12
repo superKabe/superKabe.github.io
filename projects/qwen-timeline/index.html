@@ -35,13 +35,12 @@
         <div class="shell project-hero-grid">
           <div>
             <p class="eyebrow">Project 11 · Local VLM evaluation</p>
-            <h1>Seeing the work is not the same as timing it.</h1>
+            <h1>Industrial video timeline extraction</h1>
           </div>
           <div class="project-summary">
             <p class="lead">
-              I tested whether local Qwen3-VL models could turn egocentric industrial
-              video into an auditable event log. The models understood the workflow,
-              but their timestamps were not reliable enough for audit.
+              I tested two local Qwen3-VL models on a 70-second assembly clip, then
+              compared their timestamped event logs with human annotations.
             </p>
             <dl class="project-facts">
               <div><dt>Evidence</dt><dd>70 frames at 1 FPS</dd></div>
@@ -49,6 +48,9 @@
               <div><dt>Evaluation</dt><dd>Exact label + tIoU ≥ 0.30</dd></div>
               <div><dt>Interface</dt><dd>Vanilla JavaScript</dd></div>
             </dl>
+            <p class="companion-note">
+              A companion LinkedIn write-up will be linked here after final review.
+            </p>
           </div>
         </div>
       </section>
@@ -57,16 +59,30 @@
         <div class="shell">
           <header class="section-heading comparison-heading">
             <div>
-              <p class="eyebrow">Interactive audit surface</p>
-              <h2 id="comparison-title">Inspect the prediction against the clip.</h2>
+              <p class="eyebrow">Interactive comparison</p>
+              <h2 id="comparison-title">Review the timeline</h2>
             </div>
             <p>
-              Play the video or click an event. The playhead, scrubber, active labels,
-              and event detail stay synchronized.
+              Select a run, play the clip, or click an event to inspect its timing and evidence.
             </p>
           </header>
 
           <div class="audit-workspace">
+            <aside class="run-panel" aria-label="Active run summary">
+              <div class="run-controls">
+                <div class="run-heading">
+                  <div>
+                    <p class="eyebrow">Active run</p>
+                    <h3 id="active-model-title">Qwen3-VL 4B</h3>
+                  </div>
+                  <span class="precision-badge" id="precision-badge">BF16</span>
+                </div>
+                <div class="model-switcher" id="model-switcher" aria-label="Select model run"></div>
+              </div>
+              <div class="metrics" id="metrics" aria-label="Evaluation and runtime metrics"></div>
+              <p class="run-finding" id="finding-copy"></p>
+            </aside>
+
             <div class="video-column">
               <div class="video-frame">
                 <video
@@ -102,26 +118,12 @@
               </div>
             </div>
 
-            <aside class="run-panel" aria-label="Active run summary">
-              <div class="run-heading">
+            <div class="timeline-panel">
+              <div class="timeline-heading">
                 <div>
-                  <p class="eyebrow">Active run</p>
-                  <h3 id="active-model-title">Qwen3-VL 4B</h3>
+                  <p class="eyebrow">Human reference vs. model prediction</p>
+                  <h3>Timeline</h3>
                 </div>
-                <span class="precision-badge" id="precision-badge">BF16</span>
-              </div>
-              <div class="model-switcher" id="model-switcher" aria-label="Select model run"></div>
-              <div class="metrics" id="metrics" aria-label="Evaluation and runtime metrics"></div>
-              <p class="run-finding" id="finding-copy"></p>
-            </aside>
-          </div>
-
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <div>
-                <p class="eyebrow">Human reference vs. model prediction</p>
-                <h3>The timeline is the evaluation.</h3>
-              </div>
               <div class="legend" aria-label="Event status legend">
                 <span><i class="legend-swatch matched"></i>Matched</span>
                 <span><i class="legend-swatch missed"></i>Missed or mislocalized</span>
@@ -171,6 +173,7 @@
               <div class="detail-score"><span>tIoU</span><strong>n/a</strong></div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
@@ -178,8 +181,8 @@
         <div class="shell">
           <header class="section-heading results-heading">
             <div>
-              <p class="eyebrow">Result</p>
-              <h2 id="results-title">More capacity helped, but did not solve the timeline.</h2>
+              <p class="eyebrow">Current analysis</p>
+              <h2 id="results-title">Results</h2>
             </div>
             <p>
               The 8B run matched one additional event and localized the matched events
@@ -211,8 +214,8 @@
       <section class="method-section" aria-labelledby="method-title">
         <div class="shell method-grid">
           <div>
-            <p class="eyebrow">Method and limits</p>
-            <h2 id="method-title">Built for inspection, not a production claim.</h2>
+            <p class="eyebrow">Experiment notes</p>
+            <h2 id="method-title">Method and limits</h2>
           </div>
           <div class="method-notes">
             <article>
@@ -243,6 +246,26 @@
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="glossary-section" aria-labelledby="glossary-title">
+        <div class="shell">
+          <header class="compact-heading">
+            <p class="eyebrow">Reference</p>
+            <h2 id="glossary-title">Glossary</h2>
+          </header>
+          <dl class="glossary-grid">
+            <div><dt>VLM</dt><dd>A vision-language model that reasons across images or video and text.</dd></div>
+            <div><dt>Qwen3-VL</dt><dd>Alibaba’s open-weight vision-language model family used for both runs.</dd></div>
+            <div><dt>4B / 8B</dt><dd>Approximate parameter counts: four billion and eight billion model parameters.</dd></div>
+            <div><dt>BF16</dt><dd>A 16-bit floating-point format used for the 4B model weights and compute.</dd></div>
+            <div><dt>INT8 / FP16</dt><dd>The 8B run used 8-bit weights with 16-bit floating-point compute to fit local GPU memory.</dd></div>
+            <div><dt>Temporal IoU</dt><dd>The overlap between predicted and reference time intervals divided by their combined duration.</dd></div>
+            <div><dt>1 FPS</dt><dd>One sampled frame per second, giving the model 70 frames from the 70-second clip.</dd></div>
+            <div><dt>Precision / recall / F1</dt><dd>Precision measures correct predictions, recall measures recovered reference events, and F1 balances both.</dd></div>
+            <div><dt>Boundary error</dt><dd>The absolute timing error at the start and end of matched events.</dd></div>
+          </dl>
         </div>
       </section>
     </main>
